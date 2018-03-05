@@ -16,9 +16,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.IdpResponse;
 import com.google.android.gms.auth.api.Auth;
@@ -44,6 +47,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -57,6 +61,7 @@ public class MainActivity extends AppCompatActivity
     public void onClick(View view) {
 
     }
+    ImageView profilePhoto ;
 
     private BottomNavigationView bottomNavigationView;
     GoogleApiClient mGoogleApiClient;
@@ -76,6 +81,18 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        profilePhoto = (ImageView) findViewById(R.id.imageView);
+        Button addButton = (Button) findViewById(R.id.addProduct);
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent addIntent = new Intent(getBaseContext(),AddActivity.class);
+                MainActivity.this.startActivity(addIntent);
+
+            }
+        });
+
+
 
         startActivityForResult(
                 AuthUI.getInstance()
@@ -222,10 +239,6 @@ public class MainActivity extends AppCompatActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -237,14 +250,22 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.profile) {
-            Intent intent = new Intent(getBaseContext(), LoginActivity.class);
-            startActivity(intent);
-            finish();
+//            Intent intent = new Intent(getBaseContext(), LoginActivity.class);
+//            startActivity(intent);
+//            finish();
         } else if (id == R.id.notification) {
 
         } else if (id == R.id.nav_slideshow) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.logout) {
+
+            AuthUI.getInstance()
+                    .signOut(this)
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        public void onComplete(@NonNull Task<Void> task) {
+
+                        }
+                    });
 
         } else if (id == R.id.nav_share) {
 
@@ -269,7 +290,14 @@ public class MainActivity extends AppCompatActivity
             if (resultCode == RESULT_OK) {
                 // Successfully signed in
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                Picasso.with(getBaseContext()).load(user.getPhotoUrl()).into((ImageView)findViewById(R.id.imageView));
+                TextView name= (TextView) findViewById(R.id.nameView);
+                name.setText(user.getDisplayName());
+                TextView email= (TextView) findViewById(R.id.emailView);
+                name.setText(user.getEmail());
                 Log.d("CHECK","Logged IN");
+                Log.d("CHECK",user.getDisplayName());
+                Log.d("CHECK",user.getEmail());
                 // ...
             } else {
                 // Sign in failed, check response for error code
@@ -277,6 +305,7 @@ public class MainActivity extends AppCompatActivity
             }
         }
     }
+
 
 
     private void updateUI(Object o) {
