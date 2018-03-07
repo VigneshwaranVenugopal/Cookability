@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         profilePhoto = (ImageView) findViewById(R.id.imageView);
-        Button addButton = (Button) findViewById(R.id.addProduct);
+        Button addButton = (Button) findViewById(R.id.chumma);
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -224,11 +224,11 @@ public class MainActivity extends AppCompatActivity
             super.onBackPressed();
         }
     }
-
+    //Adding the Plus button on the Header
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.menu_add, menu);
         return true;
     }
 
@@ -238,6 +238,12 @@ public class MainActivity extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+        if(id == R.id.action_settings){
+
+            Intent addIntent = new Intent(getBaseContext(),AddActivity.class);
+            MainActivity.this.startActivity(addIntent);
+
+        }
 
 
         return super.onOptionsItemSelected(item);
@@ -296,6 +302,7 @@ public class MainActivity extends AppCompatActivity
                 TextView email= (TextView) findViewById(R.id.emailView);
                 name.setText(user.getEmail());
                 Log.d("CHECK","Logged IN");
+
                 Log.d("CHECK",user.getDisplayName());
                 Log.d("CHECK",user.getEmail());
                 // ...
