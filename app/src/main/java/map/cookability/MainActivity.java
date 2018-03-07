@@ -74,9 +74,10 @@ public class MainActivity extends AppCompatActivity
 
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private static final String TAG = "DocSnippets";
+
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageRef = storage.getReference();
-    private static final String TAG = "DocSnippets";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

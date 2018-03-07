@@ -23,8 +23,7 @@
         <EditText
             android:id="@+id/EditTextName"
             android:layout_height="wrap_content"
-            android:hint="Recipe"
-            android:inputType="textPersonName"
+            android:hint="@string/recipe"
             android:layout_width="fill_parent">
         </EditText>
         <TextView
@@ -33,38 +32,39 @@
             android:layout_height="wrap_content"
             android:text="Category"
             android:textSize="10pt"/>
-        <EditText
-            android:id="@+id/EditTextEmail"
-            android:layout_height="wrap_content"
-            android:hint="Chinese/Indian/Italian"
-            android:inputType="textEmailAddress"
-            android:layout_width="fill_parent">
-        </EditText>
+
+        <Spinner
+            android:id="@+id/categorySpinner"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:entries="@array/categoryList"
+            android:prompt="@string/app_name"></Spinner>
         <TextView
             android:id="@+id/nonveg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Veg/Non-Veg"
             android:textSize="10pt"/>
+
         <Spinner
-            android:id="@+id/SpinnerFeedbackType"
-            android:layout_height="wrap_content"
-            android:prompt="@string/app_name"
+            android:id="@+id/nonvegSpinner"
             android:layout_width="fill_parent"
-            android:entries="@array/feedbacktypelist">
-        </Spinner>
+            android:layout_height="50dp"
+            android:entries="@array/feedbacktypelist"
+            android:prompt="@string/app_name"></Spinner>
 
         <TextView
             android:id="@+id/ingridients"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Ingridients"
             android:textSize="10pt"/>
 
+
         <EditText
             android:id="@+id/ingridientsText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="150dp"
             android:ems="7"
             android:inputType="textMultiLine" />
 
@@ -72,13 +72,13 @@
             android:id="@+id/steps"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Ingridients"
+            android:text="Method"
             android:textSize="10pt"/>
 
         <EditText
             android:id="@+id/stepsText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="150dp"
             android:ems="7"
             android:inputType="textMultiLine" />
 
@@ -89,9 +89,8 @@
             android:text="Take Photo"/>
         <ImageView
             android:id="@+id/mImageView"
-            android:layout_weight="9"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_width="wrap_content"
+            android:layout_height="550dp" />
         <Button
             android:id="@+id/submitButton"
             android:layout_width="wrap_content"
