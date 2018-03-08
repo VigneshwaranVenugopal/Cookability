@@ -36,5 +36,7 @@ dependencies {
     compile 'com.google.firebase:firebase-storage:11.8.0'
     compile 'com.firebaseui:firebase-ui-auth:3.2.2'
     compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'io.pristine:libjingle:9127@aar'
+
 }
 apply plugin: 'com.google.gms.google-services'

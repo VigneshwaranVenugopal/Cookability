@@ -25,6 +25,8 @@ import android.widget.VideoView;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
@@ -125,7 +127,7 @@ public class AddActivity extends AppCompatActivity {
                     recipe.put("ingridients", ingridientsText);
                     recipe.put("steps", stepsText);
                     recipe.put("imageurl", imagename);
-
+                    recipe.put("chef", FirebaseAuth.getInstance().getCurrentUser().getUid());
                     db.collection("recipes")
                             .add(recipe)
                             .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
@@ -142,6 +144,7 @@ public class AddActivity extends AppCompatActivity {
                             });
                     try {
                         upload();
+                        finish();
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
@@ -169,6 +172,7 @@ public class AddActivity extends AppCompatActivity {
                 // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
                 Uri downloadUrl = taskSnapshot.getDownloadUrl();
                 Log.d("res","hurray");
+
             }
         });
     }
@@ -193,7 +197,6 @@ public class AddActivity extends AppCompatActivity {
                         photoFile);
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                 startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
-
             }
         }
     }

@@ -2,6 +2,7 @@ package map.cookability;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
@@ -20,6 +21,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.firebase.ui.auth.AuthUI;
@@ -41,9 +43,13 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -82,18 +88,6 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        profilePhoto = (ImageView) findViewById(R.id.imageView);
-        Button addButton = (Button) findViewById(R.id.chumma);
-        addButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent addIntent = new Intent(getBaseContext(),AddActivity.class);
-                MainActivity.this.startActivity(addIntent);
-
-            }
-        });
-
-
 
         startActivityForResult(
                 AuthUI.getInstance()
@@ -110,7 +104,7 @@ public class MainActivity extends AppCompatActivity
                 .enableAutoManage(this,this)
                 .addApi(Auth.GOOGLE_SIGN_IN_API,gso)
                 .build();
-
+        adduser();
 
                 bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_nav);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -143,32 +137,51 @@ public class MainActivity extends AppCompatActivity
                     }
                 });
 
-        final ListView listView = (ListView) findViewById(R.id.timeline);
-        db.collection("users")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            ArrayList<Recipe> eventList = new ArrayList<>();
-                            for (DocumentSnapshot document : task.getResult()) {
 
-                                StorageReference islandRef = storageRef.child("images/island.jpg");
+        getData();
+    }
 
+    private void adduser() {
+        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        final Map<String, Object> currentuser = new HashMap<>();
+        currentuser.put("name", user.getDisplayName());
+        currentuser.put("email", user.getEmail());
+        currentuser.put("uid", user.getUid());
+        //currentuser.put("photourl",user.getPhotoUrl());
+        CollectionReference userRef = db.collection("users");
+        Query query = userRef.whereEqualTo("uid", user.getUid());
 
+        query.addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
+                if (documentSnapshots != null){
+                    Log.d(TAG, "onEvent: username does not exists");
+                    Toast.makeText(getBaseContext(), "Username is not available", Toast.LENGTH_SHORT).show();
+                    db.collection("users").document(user.getUid())
+                            .set(currentuser)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Log.d(TAG, "DocumentSnapshot successfully written!");
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.w(TAG, "Error writing document", e);
+                                }
+                            });
 
-                                Recipe current = new Recipe(document.getId(),document.getData());
-                                String e = current.documentName;
-                                Log.d("Result", e + " => " + document.getData());
-                                eventList.add(current);
-                                RecipeAdapter adapter = new RecipeAdapter(getBaseContext(), eventList);
-                                listView.setAdapter(adapter);
-                            }
-                        } else {
-                            Log.d(TAG, "Error getting documents: ", task.getException());
-                        }
+                }
+                for (DocumentSnapshot ds: documentSnapshots){
+                    if (ds.exists()){
+                        //Log.d(TAG, "checkingIfusernameExist: FOUND A MATCH: " + ds.toObject(Users.class).getUsername());
+                        Toast.makeText(getBaseContext(), "That username already exists.", Toast.LENGTH_SHORT).show();
                     }
-                });
+                }
+            }
+        });
+
     }
 
     protected void addData(){
@@ -193,26 +206,33 @@ public class MainActivity extends AppCompatActivity
                 });
     }
 
-    protected void getData(){
-        DocumentReference docRef = db.collection("users").document("SF");
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document != null) {
-                        Log.d(TAG, "DocumentSnapshot data: " + task.getResult().getData());
-                    } else {
-                        Log.d(TAG, "No such document");
-                    }
-                } else {
-                    Log.d(TAG, "get failed with ", task.getException());
-                }
-            }
-        });
+    public final void getData(){
 
+        db.collection("recipes")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            ArrayList<Recipe> eventList = new ArrayList<>();
+                            for (DocumentSnapshot document : task.getResult()) {
+                                final ListView listView = (ListView) findViewById(R.id.timeline);
+                                Recipe current = new Recipe(document.getId(),document.getData());
+                                String e = current.title;
+                                Log.d("Result", e + " => " + document.getData());
+                                eventList.add(current);
+                                RecipeAdapter adapter = new RecipeAdapter(getBaseContext(), eventList);
+                                listView.setAdapter(adapter);
+                            }
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
 
     }
+
+
 
 
 
@@ -243,10 +263,17 @@ public class MainActivity extends AppCompatActivity
 
             Intent addIntent = new Intent(getBaseContext(),AddActivity.class);
             MainActivity.this.startActivity(addIntent);
-
+            
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                            /*Bitmap myBitmap = BitmapFactory.decodeFile(imgFil1.getPath());
+                            myImage.setImageBitmap(myBitmap);*/
+                    getData();
+                }
+            }, 8000);
         }
-
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -297,7 +324,7 @@ public class MainActivity extends AppCompatActivity
             if (resultCode == RESULT_OK) {
                 // Successfully signed in
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                Picasso.with(getBaseContext()).load(user.getPhotoUrl()).into((ImageView)findViewById(R.id.imageView));
+                Picasso.with(getBaseContext()).load(user.getPhotoUrl()).into((ImageView)findViewById(R.id.checknow));
                 TextView name= (TextView) findViewById(R.id.nameView);
                 name.setText(user.getDisplayName());
                 TextView email= (TextView) findViewById(R.id.emailView);
