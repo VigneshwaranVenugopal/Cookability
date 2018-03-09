@@ -81,8 +81,5 @@ public class RecipeAdapter extends BaseAdapter {
        });
         return rowView;
     }
-
-
-
 }
 
