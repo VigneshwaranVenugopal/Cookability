@@ -130,8 +130,8 @@ public class MainActivity extends AppCompatActivity
                                 // TODO
                                 return true;
                             case R.id.bottombaritem_todo:
-                                // TODO
-                                return true;
+                                Intent intent = new Intent(MainActivity.this, RequestAppointment.class);
+                                MainActivity.this.startActivity(intent);
                         }
                         return false;
                     }
@@ -351,4 +351,10 @@ public class MainActivity extends AppCompatActivity
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
     }
+
+    public void openRequestAppointment(View view) {
+        Intent intent = new Intent(this, RequestAppointment.class);
+        this.startActivity(intent);
+    }
 }
+

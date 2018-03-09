@@ -35,5 +35,4 @@
         app:menu="@menu/bottombar_menu" />
 
 
-
 </android.support.design.widget.CoordinatorLayout>

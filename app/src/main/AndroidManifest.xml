@@ -49,6 +49,9 @@
             android:name=".AddActivity"
             android:label="@string/title_activity_add"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:label="RequestAppointment"
+            android:name=".RequestAppointment"/>
     </application>
     <uses-feature android:name="android.hardware.camera"
         android:required="true" />
