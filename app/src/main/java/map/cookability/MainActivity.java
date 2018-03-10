@@ -65,7 +65,6 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, GoogleApiClient.OnConnectionFailedListener, View.OnClickListener {
     @Override
     public void onClick(View view) {
-
     }
     ImageView profilePhoto ;
 
