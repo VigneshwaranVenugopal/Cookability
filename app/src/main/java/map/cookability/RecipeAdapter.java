@@ -62,6 +62,9 @@ public class RecipeAdapter extends BaseAdapter {
         TextView category =
                 (TextView) rowView.findViewById(R.id.recipe_list_subtitle);
 
+        TextView recipeID =
+                (TextView) rowView.findViewById(R.id.recipe_id);
+
         // Get thumbnail element
         final ImageView thumbnailImageView =
                 (ImageView) rowView.findViewById(R.id.recipe_list_thumbnail);
@@ -72,6 +75,7 @@ public class RecipeAdapter extends BaseAdapter {
         StorageReference storageRef = storage.getReference();
         recipeTitle.setText(recipe.title);
         category.setText(recipe.category);
+        recipeID.setText(recipe.documentName);
         StorageReference gsReference = storage.getReferenceFromUrl("gs://cookability-76899.appspot.com/"+recipe.imageUrl);
        gsReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
            @Override

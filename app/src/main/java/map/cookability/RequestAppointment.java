@@ -4,6 +4,7 @@ package map.cookability;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -36,12 +37,17 @@ public class RequestAppointment extends AppCompatActivity {
     int year, month, day, hour, minute;
     static final int DATE_DIALOG_ID = 0;
     static final int TIME_DIALOG_ID = 1;
-    TextView appointmentDate, appointmentTime;
+    TextView appointmentDate, appointmentTime, recipeTitle;
     EditText noteEditText;
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.request_appointment);
+        Intent intent = getIntent();
+        String msg = intent.getStringExtra(RecipePage.APPOINTMENT_MESSAGE);
+        recipeTitle = (TextView) findViewById(R.id.recipe_title);
+        recipeTitle.setText(msg);
+
         appointmentDate = (TextView)findViewById(R.id.appointmentDate);
         appointmentTime = (TextView)findViewById(R.id.appointmentTime);
         noteEditText = (EditText)findViewById(R.id.noteEditText);
@@ -136,7 +142,7 @@ public class RequestAppointment extends AppCompatActivity {
         final String appointmentTime = Long.toString(timestampDate);
         final String dateCreated = Long.toString(currentTime);
         final String note = noteEditText.getText().toString();
-        final String recipe = "test recipe";
+        final String recipe = recipeTitle.getText().toString();
         final String status = "requested";
         final String chefUID = "test_id_chef";
         final String studentUID = "test_id_student";

@@ -63,6 +63,9 @@
             android:name=".RequestAppointment"
             android:label="RequestAppointment" />
         <activity
+            android:name=".RecipePage"
+            android:label="RecipePage" />
+        <activity
             android:name=".notification"
             android:label="@string/title_activity_notification"
             android:theme="@style/AppTheme.NoActionBar" />

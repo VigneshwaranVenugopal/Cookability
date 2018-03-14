@@ -28,7 +28,7 @@
             android:text="Recipe: " />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/recipe_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="1"

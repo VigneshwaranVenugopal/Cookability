@@ -63,6 +63,9 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, GoogleApiClient.OnConnectionFailedListener, View.OnClickListener {
+    public static final String RECIPE_PAGE_TITLE_MESSAGE = "";
+    public static final String RECIPE_PAGE_CHEF_MESSAGE = "";
+    public static final String RECIPE_PAGE_IMG_SRC_MESSAGE = "";
     @Override
     public void onClick(View view) {
     }
@@ -351,8 +354,18 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    public void openRequestAppointment(View view) {
-        Intent intent = new Intent(this, RequestAppointment.class);
+    public void openRecipePage(View view) {
+        Intent intent = new Intent(this, RecipePage.class);
+        View parent = (View) view.getParent().getParent();
+
+        TextView recipeTitleTextView = parent.findViewById(R.id.recipe_list_title);
+        String recipeTitle = String.valueOf(recipeTitleTextView.getText());
+        intent.putExtra(RECIPE_PAGE_TITLE_MESSAGE, recipeTitle);
+
+        TextView chefNameTextView = parent.findViewById(R.id.recipe_id);
+        String chefName = String.valueOf(chefNameTextView.getText());
+        intent.putExtra(RECIPE_PAGE_CHEF_MESSAGE, chefName);
+
         this.startActivity(intent);
     }
 }
