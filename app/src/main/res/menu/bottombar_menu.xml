@@ -11,7 +11,7 @@
     <item
         android:id="@+id/bottombaritem_messages"
         android:icon="@drawable/ic_message_black_24dp"
-        android:title="Messages"
+        android:title="Search"
         app:showAsAction="ifRoom"/>
 
     <item

@@ -129,8 +129,8 @@ public class MainActivity extends AppCompatActivity
                                 // TODO
                                 return true;
                             case R.id.bottombaritem_messages:
-                                // TODO
-                                return true;
+                                Intent intentSearch = new Intent(MainActivity.this, SearchActivity.class);
+                                MainActivity.this.startActivity(intentSearch);
                             case R.id.bottombaritem_todo:
                                 Intent intent = new Intent(MainActivity.this, RequestAppointment.class);
                                 MainActivity.this.startActivity(intent);
@@ -252,6 +252,7 @@ public class MainActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_add, menu);
+
         return true;
     }
 
