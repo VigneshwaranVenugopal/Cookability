@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="map.cookability.NotificationFile.ShowNotifActivity">
+
+    <TextView
+        android:id="@+id/show_notif_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/show_notif_fromName"
+        android:layout_alignStart="@+id/show_notif_accept_btn"
+        android:layout_marginBottom="56dp"
+        android:fontFamily="@font/nunito_semibold"
+        android:text="message"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        tools:layout_editor_absoluteX="133dp"
+        tools:layout_editor_absoluteY="54dp" />
+
+    <TextView
+        android:id="@+id/show_notif_fromName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/show_notif_message"
+        android:layout_marginTop="116dp"
+        android:fontFamily="@font/nunito_semibold"
+        android:text="From"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        tools:layout_editor_absoluteX="133dp"
+        tools:layout_editor_absoluteY="54dp" />
+
+    <Button
+        android:id="@+id/show_notif_accept_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/show_notif_fromName"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="76dp"
+        android:background="@drawable/primary_color_btn"
+        android:fontFamily="@font/nunito_semibold"
+        android:text="Accept"
+        android:textColor="@android:color/white"
+        tools:layout_editor_absoluteX="53dp"
+        tools:layout_editor_absoluteY="195dp" />
+
+    <Button
+        android:id="@+id/show_notif_decline_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/show_notif_accept_btn"
+        android:layout_alignBottom="@+id/show_notif_accept_btn"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="74dp"
+        android:background="@drawable/primary_color_btn"
+        android:text="Decline"
+        android:textColor="@android:color/white"
+        tools:layout_editor_absoluteX="204dp"
+        tools:layout_editor_absoluteY="195dp" />
+
+    <ProgressBar
+        android:id="@+id/responseProgressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:indeterminate="true"
+        android:visibility="invisible" />
+
+
+</RelativeLayout>
