@@ -63,14 +63,11 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, GoogleApiClient.OnConnectionFailedListener, View.OnClickListener {
-    public static final String RECIPE_PAGE_TITLE_MESSAGE = "";
-    public static final String RECIPE_PAGE_CHEF_MESSAGE = "";
-    public static final String RECIPE_PAGE_IMG_SRC_MESSAGE = "";
     @Override
     public void onClick(View view) {
     }
     ImageView profilePhoto ;
-
+    String currentUserUID;
     private BottomNavigationView bottomNavigationView;
     GoogleApiClient mGoogleApiClient;
     private FirebaseAuth mAuth;
@@ -149,6 +146,7 @@ public class MainActivity extends AppCompatActivity
         currentuser.put("name", user.getDisplayName());
         currentuser.put("email", user.getEmail());
         currentuser.put("uid", user.getUid());
+        currentUserUID = user.getUid();
         //currentuser.put("photourl",user.getPhotoUrl());
         CollectionReference userRef = db.collection("users");
         Query query = userRef.whereEqualTo("uid", user.getUid());
@@ -354,19 +352,66 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    public void openRecipePage(View view) {
+    public void startRecipePageActivity(Map recipe, String chefName) {
         Intent intent = new Intent(this, RecipePage.class);
-        View parent = (View) view.getParent().getParent();
 
-        TextView recipeTitleTextView = parent.findViewById(R.id.recipe_list_title);
-        String recipeTitle = String.valueOf(recipeTitleTextView.getText());
-        intent.putExtra(RECIPE_PAGE_TITLE_MESSAGE, recipeTitle);
+        String recipeTitle = (String) recipe.get("name");
+        String category = (String) recipe.get("category");
+        String chefUID = (String) recipe.get("chef");
 
-        TextView chefNameTextView = parent.findViewById(R.id.recipe_id);
-        String chefName = String.valueOf(chefNameTextView.getText());
-        intent.putExtra(RECIPE_PAGE_CHEF_MESSAGE, chefName);
+        Bundle extras = new Bundle();
+        extras.putString("NAME",recipeTitle);
+        extras.putString("CATEGORY", category);
+        extras.putString("CHEF", chefName);
+        extras.putString("CHEF_UID", chefUID);
+        extras.putString("STUDENT_UID", currentUserUID);
+        intent.putExtras(extras);
 
         this.startActivity(intent);
+    }
+
+    public void getChefUID(final Map recipe) {
+        String chefUID = (String) recipe.get("chef");
+        DocumentReference docRef = db.collection("users").document(chefUID);
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document != null && document.exists()) {
+                        String chefName = (String) document.getData().get("name");
+                        startRecipePageActivity(recipe, chefName);
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+        });
+    }
+
+    public void openRecipePage(final View view) {
+        View parent = (View) view.getParent().getParent();
+        TextView recipeIDTextView = parent.findViewById(R.id.recipe_id);
+        String recipeID = recipeIDTextView.getText().toString();
+        DocumentReference docRef = db.collection("recipes").document(recipeID);
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document != null && document.exists()) {
+                        Map<String, Object> recipe = document.getData();
+                        getChefUID(recipe);
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+        });
     }
 }
 
