@@ -1,4 +1,4 @@
-package map.cookability;
+package map.cookability.NotificationFile;
 
 /**
  * Created by yanglili on 3/17/18.
@@ -9,6 +9,9 @@ public class Notifications {
     private String fromImage;
     private String fromName;
     private String fromId;
+    private String read;
+    private String notificationId;
+    private String currentId;
 
     public Notifications(){
 
@@ -46,4 +49,27 @@ public class Notifications {
         this.fromId = fromId;
     }
 
+    public String getRead() {
+        return read;
+    }
+
+    public void setRead(String read) {
+        this.read = read;
+    }
+
+    public String getNotificationId() {
+        return notificationId;
+    }
+
+    public void setNotificationId(String notificationId) {
+        this.notificationId = notificationId;
+    }
+
+    public String getCurrentId() {
+        return currentId;
+    }
+
+    public void setCurrentId(String currentId) {
+        this.currentId = currentId;
+    }
 }
