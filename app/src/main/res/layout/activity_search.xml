@@ -36,16 +36,6 @@
         android:background="@android:color/background_light"
         app:srcCompat="@drawable/ic_search_orange" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/card_recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="459dp"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/search_field"
-        android:layout_marginTop="29dp"
-        android:scrollbars="vertical"
-        tools:layout_editor_absoluteY="108dp" />
-
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottom_nav"
         android:layout_width="wrap_content"
@@ -61,6 +51,13 @@
         app:layout_constraintStart_toStartOf="parent"
 
         app:menu="@menu/bottombar_menu" />
+
+    <ListView
+        android:id="@+id/lisr"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/search_field" />
 
 </RelativeLayout>
 
