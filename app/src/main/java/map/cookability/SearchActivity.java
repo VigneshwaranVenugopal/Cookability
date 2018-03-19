@@ -51,7 +51,6 @@ public class SearchActivity extends AppCompatActivity {
             }
         });
 
-        //initViews();
     }
 
     private void firebaseRecipeSearch() {
