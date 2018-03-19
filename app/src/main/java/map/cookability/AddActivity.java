@@ -80,7 +80,6 @@ public class AddActivity extends AppCompatActivity {
                 File imgFile = new  File("/sdcard/Android/data/assignment1.cooking/files/Pictures/temp.jpg");
                 final File imgFil1 = new  File(imagepath);
                 Log.d("YES",imagepath);
-             //   File imgFile = new  File(imagepath);
                 if(imgFil1.exists()){
                     Log.d("NO",imagepath);
 

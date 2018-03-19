@@ -74,7 +74,11 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".SearchActivity" />
         <activity android:name=".NotificationFile.ShowNotifActivity" />
-        <activity android:name=".NotificationFile.NotificationActivity"></activity>
+        <activity android:name=".NotificationFile.NotificationActivity" />
+        <activity
+            android:name=".ProfileActivity"
+            android:label="@string/title_activity_profile"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

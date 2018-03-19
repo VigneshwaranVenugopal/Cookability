@@ -266,9 +266,8 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.profile) {
-//            Intent intent = new Intent(getBaseContext(), LoginActivity.class);
-//            startActivity(intent);
-//            finish();
+            Intent intent = new Intent(getBaseContext(), ProfileActivity.class);
+            startActivity(intent);
         } else if (id == R.id.notification) {
 
         } else if (id == R.id.nav_slideshow) {
