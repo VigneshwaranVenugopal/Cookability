@@ -340,10 +340,12 @@ public class MainActivity extends AppCompatActivity
         String recipeTitle = (String) recipe.get("name");
         String category = (String) recipe.get("category");
         String chefUID = (String) recipe.get("chef");
+        String imageURL = (String) recipe.get("imageurl");
 
         Bundle extras = new Bundle();
         extras.putString("NAME",recipeTitle);
         extras.putString("CATEGORY", category);
+        extras.putString("IMAGE_URL", imageURL);
         extras.putString("CHEF", chefName);
         extras.putString("CHEF_UID", chefUID);
         extras.putString("STUDENT_UID", currentUserUID);
