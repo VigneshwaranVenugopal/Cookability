@@ -117,8 +117,9 @@ public class MainActivity extends AppCompatActivity
                                 // TODO
                                 return true;
                             case R.id.bottombaritem_messages:
-                                Intent intentSearch = new Intent(MainActivity.this, SearchActivity.class);
+                                Intent intentSearch = new Intent(getBaseContext(), SearchActivity.class);
                                 startActivity(intentSearch);
+                                break;
                             case R.id.bottombaritem_todo:
                                 Intent intent = new Intent(MainActivity.this, RequestAppointment.class);
                                 MainActivity.this.startActivity(intent);
