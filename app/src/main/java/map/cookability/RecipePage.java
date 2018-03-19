@@ -1,37 +1,24 @@
 package map.cookability;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.database.Query;
-import com.google.firebase.firestore.QuerySnapshot;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
+import com.squareup.picasso.Picasso;
 
 public class RecipePage extends AppCompatActivity {
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
-    DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference();
     public static String chefUID, studentUID, chefName, recipeName;
 
     @Override
@@ -46,6 +33,7 @@ public class RecipePage extends AppCompatActivity {
         chefName = extras.getString("CHEF");
         chefUID = extras.getString("CHEF_UID");
         studentUID = extras.getString("STUDENT_UID");
+        String imageURL = extras.getString("IMAGE_URL");
 
         TextView recipeTitle = findViewById(R.id.recipe_name);
         recipeTitle.setText(recipeName);
@@ -55,10 +43,16 @@ public class RecipePage extends AppCompatActivity {
         chefNameTextView.setText(chefName);
 
 
-    }
-
-    public void getRecipeInfo(String recipeID) {
-
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        final Context context = this;
+        final ImageView thumbnailImageView = findViewById(R.id.recipe_list_thumbnail);
+        StorageReference gsReference = storage.getReferenceFromUrl("gs://cookability-76899.appspot.com/"+imageURL);
+        gsReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Picasso.with(context).load(uri.toString()).into(thumbnailImageView);
+            }
+        });
 
 
     }

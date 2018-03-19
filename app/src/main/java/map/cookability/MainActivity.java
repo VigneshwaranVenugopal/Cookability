@@ -52,6 +52,9 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, GoogleApiClient.OnConnectionFailedListener, View.OnClickListener {
+    public static final String RECIPE_PAGE_TITLE_MESSAGE = "";
+    public static final String RECIPE_PAGE_CHEF_MESSAGE = "";
+    public static final String RECIPE_PAGE_IMG_SRC_MESSAGE = "";
     @Override
     public void onClick(View view) {
     }
@@ -92,7 +95,6 @@ public class MainActivity extends AppCompatActivity
                 .enableAutoManage(this,this)
                 .addApi(Auth.GOOGLE_SIGN_IN_API,gso)
                 .build();
-        adduser();
 
                 bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_nav);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -132,14 +134,24 @@ public class MainActivity extends AppCompatActivity
     private void adduser() {
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         final Map<String, Object> currentuser = new HashMap<>();
+        Picasso.with(getBaseContext()).load(user.getPhotoUrl()).into((ImageView)findViewById(R.id.checknow));
+        TextView name= (TextView) findViewById(R.id.nameView);
+        name.setText(user.getDisplayName());
+        TextView email= (TextView) findViewById(R.id.emailView);
+        name.setText(user.getEmail());
+        Log.d("CHECK","Logged IN");
+        Log.d("CHECK",user.getDisplayName());
+        Log.d("CHECK",user.getEmail());
+
         currentuser.put("name", user.getDisplayName());
         currentuser.put("email", user.getEmail());
         currentuser.put("uid", user.getUid());
         currentUserUID = user.getUid();
         //currentuser.put("photourl",user.getPhotoUrl());
+
+
         CollectionReference userRef = db.collection("users");
         Query query = userRef.whereEqualTo("uid", user.getUid());
-
         query.addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
@@ -164,35 +176,14 @@ public class MainActivity extends AppCompatActivity
                 }
                 for (DocumentSnapshot ds: documentSnapshots){
                     if (ds.exists()){
+                        // The user name already
                         //Log.d(TAG, "checkingIfusernameExist: FOUND A MATCH: " + ds.toObject(Users.class).getUsername());
-                        Toast.makeText(getBaseContext(), "That username already exists.", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getBaseContext(), "That username already exists.", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
         });
 
-    }
-
-    protected void addData(){
-        Map<String, Object> user = new HashMap<>();
-        user.put("first", "Ada");
-        user.put("last", "Lovelace");
-        user.put("born", 1815);
-
-        db.collection("users")
-                .add(user)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error adding document", e);
-                    }
-                });
     }
 
     public final void getData(){
@@ -313,16 +304,7 @@ public class MainActivity extends AppCompatActivity
 
             if (resultCode == RESULT_OK) {
                 // Successfully signed in
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                Picasso.with(getBaseContext()).load(user.getPhotoUrl()).into((ImageView)findViewById(R.id.checknow));
-                TextView name= (TextView) findViewById(R.id.nameView);
-                name.setText(user.getDisplayName());
-                TextView email= (TextView) findViewById(R.id.emailView);
-                name.setText(user.getEmail());
-                Log.d("CHECK","Logged IN");
-
-                Log.d("CHECK",user.getDisplayName());
-                Log.d("CHECK",user.getEmail());
+                adduser();
                 // ...
             } else {
                 // Sign in failed, check response for error code
@@ -348,10 +330,12 @@ public class MainActivity extends AppCompatActivity
         String recipeTitle = (String) recipe.get("name");
         String category = (String) recipe.get("category");
         String chefUID = (String) recipe.get("chef");
+        String imageURL = (String) recipe.get("imageurl");
 
         Bundle extras = new Bundle();
         extras.putString("NAME",recipeTitle);
         extras.putString("CATEGORY", category);
+        extras.putString("IMAGE_URL", imageURL);
         extras.putString("CHEF", chefName);
         extras.putString("CHEF_UID", chefUID);
         extras.putString("STUDENT_UID", currentUserUID);
