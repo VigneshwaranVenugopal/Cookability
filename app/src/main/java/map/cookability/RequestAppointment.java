@@ -112,7 +112,7 @@ public class RequestAppointment extends AppCompatActivity {
         @Override
         public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
             year = i;
-            month = i1;
+            month = i1 + 1;
             day = i2;
             String date = year + "/" + month + "/" + day;
             appointmentDate.setText(date);

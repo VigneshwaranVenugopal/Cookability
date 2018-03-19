@@ -9,7 +9,7 @@
         android:id="@+id/addProduct"
         android:orderInCategory="300"
         android:title="User"
-        android:icon="@drawable/ic_add_black_24dp"
+        android:icon="@drawable/ic_add_white_24dp"
         android:onClick="onclick"
         app:showAsAction="ifRoom" />
 </menu>

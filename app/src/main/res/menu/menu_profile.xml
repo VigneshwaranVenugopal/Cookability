@@ -1,13 +1,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".AddActivity">
-
-
+    tools:context="map.cookability.ProfileActivity">
     <item
         android:id="@+id/action_settings"
-        android:icon="@drawable/ic_add_white_24dp"
-        android:orderInCategory="300"
+        android:orderInCategory="100"
         android:title="@string/action_settings"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="never" />
 </menu>

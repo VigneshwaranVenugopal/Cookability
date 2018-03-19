@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -17,32 +15,23 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.IdpResponse;
 import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -63,6 +52,9 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, GoogleApiClient.OnConnectionFailedListener, View.OnClickListener {
+    public static final String RECIPE_PAGE_TITLE_MESSAGE = "";
+    public static final String RECIPE_PAGE_CHEF_MESSAGE = "";
+    public static final String RECIPE_PAGE_IMG_SRC_MESSAGE = "";
     @Override
     public void onClick(View view) {
     }
@@ -103,7 +95,6 @@ public class MainActivity extends AppCompatActivity
                 .enableAutoManage(this,this)
                 .addApi(Auth.GOOGLE_SIGN_IN_API,gso)
                 .build();
-        adduser();
 
                 bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_nav);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -126,8 +117,9 @@ public class MainActivity extends AppCompatActivity
                                 // TODO
                                 return true;
                             case R.id.bottombaritem_messages:
-                                // TODO
-                                return true;
+                                Intent intentSearch = new Intent(getBaseContext(), SearchActivity.class);
+                                startActivity(intentSearch);
+                                break;
                             case R.id.bottombaritem_todo:
                                 Intent intent = new Intent(MainActivity.this, RequestAppointment.class);
                                 MainActivity.this.startActivity(intent);
@@ -143,14 +135,24 @@ public class MainActivity extends AppCompatActivity
     private void adduser() {
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         final Map<String, Object> currentuser = new HashMap<>();
+        Picasso.with(getBaseContext()).load(user.getPhotoUrl()).into((ImageView)findViewById(R.id.checknow));
+        TextView name= (TextView) findViewById(R.id.nameView);
+        name.setText(user.getDisplayName());
+        TextView email= (TextView) findViewById(R.id.emailView);
+        name.setText(user.getEmail());
+        Log.d("CHECK","Logged IN");
+        Log.d("CHECK",user.getDisplayName());
+        Log.d("CHECK",user.getEmail());
+
         currentuser.put("name", user.getDisplayName());
         currentuser.put("email", user.getEmail());
         currentuser.put("uid", user.getUid());
         currentUserUID = user.getUid();
         //currentuser.put("photourl",user.getPhotoUrl());
+
+
         CollectionReference userRef = db.collection("users");
         Query query = userRef.whereEqualTo("uid", user.getUid());
-
         query.addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
@@ -175,35 +177,14 @@ public class MainActivity extends AppCompatActivity
                 }
                 for (DocumentSnapshot ds: documentSnapshots){
                     if (ds.exists()){
+                        // The user name already
                         //Log.d(TAG, "checkingIfusernameExist: FOUND A MATCH: " + ds.toObject(Users.class).getUsername());
-                        Toast.makeText(getBaseContext(), "That username already exists.", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getBaseContext(), "That username already exists.", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
         });
 
-    }
-
-    protected void addData(){
-        Map<String, Object> user = new HashMap<>();
-        user.put("first", "Ada");
-        user.put("last", "Lovelace");
-        user.put("born", 1815);
-
-        db.collection("users")
-                .add(user)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error adding document", e);
-                    }
-                });
     }
 
     public final void getData(){
@@ -250,6 +231,7 @@ public class MainActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_add, menu);
+
         return true;
     }
 
@@ -284,9 +266,8 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.profile) {
-//            Intent intent = new Intent(getBaseContext(), LoginActivity.class);
-//            startActivity(intent);
-//            finish();
+            Intent intent = new Intent(getBaseContext(), ProfileActivity.class);
+            startActivity(intent);
         } else if (id == R.id.notification) {
 
         } else if (id == R.id.nav_slideshow) {
@@ -323,16 +304,7 @@ public class MainActivity extends AppCompatActivity
 
             if (resultCode == RESULT_OK) {
                 // Successfully signed in
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                Picasso.with(getBaseContext()).load(user.getPhotoUrl()).into((ImageView)findViewById(R.id.checknow));
-                TextView name= (TextView) findViewById(R.id.nameView);
-                name.setText(user.getDisplayName());
-                TextView email= (TextView) findViewById(R.id.emailView);
-                name.setText(user.getEmail());
-                Log.d("CHECK","Logged IN");
-
-                Log.d("CHECK",user.getDisplayName());
-                Log.d("CHECK",user.getEmail());
+                adduser();
                 // ...
             } else {
                 // Sign in failed, check response for error code
@@ -358,10 +330,12 @@ public class MainActivity extends AppCompatActivity
         String recipeTitle = (String) recipe.get("name");
         String category = (String) recipe.get("category");
         String chefUID = (String) recipe.get("chef");
+        String imageURL = (String) recipe.get("imageurl");
 
         Bundle extras = new Bundle();
         extras.putString("NAME",recipeTitle);
         extras.putString("CATEGORY", category);
+        extras.putString("IMAGE_URL", imageURL);
         extras.putString("CHEF", chefName);
         extras.putString("CHEF_UID", chefUID);
         extras.putString("STUDENT_UID", currentUserUID);
