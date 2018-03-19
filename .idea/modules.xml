@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cookability.iml" filepath="$PROJECT_DIR$/cookability.iml" />
       <module fileurl="file://C:\Users\theon\AndroidStudioProjects\cookability2\cookability.iml" filepath="C:\Users\theon\AndroidStudioProjects\cookability2\cookability.iml" />
       <module fileurl="file://$PROJECT_DIR$/cookability2.iml" filepath="$PROJECT_DIR$/cookability2.iml" />
     </modules>
