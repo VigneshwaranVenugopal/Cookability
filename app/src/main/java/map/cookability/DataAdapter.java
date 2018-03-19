@@ -25,7 +25,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> im
 
     @Override
     public DataAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.card_row, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.content_search, viewGroup, false);
         return new ViewHolder(view);
     }
 
@@ -88,7 +88,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> im
             super(view);
 
             tv_name = (TextView)view.findViewById(R.id.tv_name);
-            tv_version = (TextView)view.findViewById(R.id.tv_version);
+            tv_version = (TextView)view.findViewById(R.id.user_name_search);
             tv_api_level = (TextView)view.findViewById(R.id.tv_api_level);
 
         }

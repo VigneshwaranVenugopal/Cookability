@@ -7,21 +7,18 @@ import java.util.Map;
  */
 
 public class Users {
-    private  String name, image, type, dish;
-//    Users(String name, Map<String,Object> data){
-//        this.documentid = name;
-//        this.name = (String)data.get("name");
-//        this.uid = (String)data.get("uid");
-//        this.email = (String)data.get("email");
-//        this.photourl = (String)data.get("photourl");
-//    }
+    public String name;
+    public String uid;
+    public String email;
+    public String photourl;
+    public String documentid;
 
-
-    public Users(String name, String image, String type, String dish) {
-        this.name = name;
-        this.image = image;
-        this.type = type;
-        this.dish = dish;
+    Users(String name, Map<String,Object> data){
+        this.documentid = name;
+        this.name = (String)data.get("name");
+        this.uid = (String)data.get("uid");
+        this.email = (String)data.get("email");
+        this.photourl = (String)data.get("photourl");
     }
 
     public String getName() {
@@ -32,27 +29,35 @@ public class Users {
         this.name = name;
     }
 
-    public String getImage() {
-        return image;
+    public String getUid() {
+        return uid;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
-    public String getType() {
-        return type;
+    public String getEmail() {
+        return email;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getDish() {
-        return dish;
+    public String getPhotourl() {
+        return photourl;
     }
 
-    public void setDish(String dish) {
-        this.dish = dish;
+    public void setPhotourl(String photourl) {
+        this.photourl = photourl;
+    }
+
+    public String getDocumentid() {
+        return documentid;
+    }
+
+    public void setDocumentid(String documentid) {
+        this.documentid = documentid;
     }
 }

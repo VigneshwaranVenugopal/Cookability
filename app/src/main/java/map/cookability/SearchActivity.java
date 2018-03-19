@@ -11,6 +11,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.ImageButton;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,24 +25,23 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class SearchActivity extends AppCompatActivity {
 
-    public static final String BASE_URL = "https://api.learn2crack.com";
-    private RecyclerView mRecyclerView;
-    private ArrayList<AndroidVersion> mArrayList;
-    private DataAdapter mAdapter;
+    private EditText mSearchField;
+    private ImageButton mSearchBtn;
+    private RecyclerView mResultList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setContentView(R.layout.activity_search);
 
-        initViews();
-        loadJSON();
+        mSearchField = (EditText)findViewById(R.id.search_field);
+        mSearchBtn = (ImageButton)findViewById(R.id.search_button);
+
+        mResultList = (RecyclerView)findViewById(R.id.card_recycler_view);
     }
 
     private void initViews(){
-        mRecyclerView = (RecyclerView)findViewById(R.id.card_recycler_view);
+       // mRecyclerView = (RecyclerView)findViewById(R.id.card_recycler_view);
         mRecyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(layoutManager);
