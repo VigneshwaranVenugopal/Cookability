@@ -23,6 +23,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import org.w3c.dom.Text;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -39,14 +41,22 @@ public class RequestAppointment extends AppCompatActivity {
     static final int TIME_DIALOG_ID = 1;
     TextView appointmentDate, appointmentTime, recipeTitle;
     EditText noteEditText;
+    static String chefUID, studentUID, chefName, recipeName;
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.request_appointment);
         Intent intent = getIntent();
-        String msg = intent.getStringExtra(RecipePage.APPOINTMENT_MESSAGE);
-        recipeTitle = (TextView) findViewById(R.id.recipe_title);
-        recipeTitle.setText(msg);
+        Bundle extras = intent.getExtras();
+        chefUID = extras.getString("CHEF_UID");
+        studentUID = extras.getString("STUDENT_UID");
+        chefName = extras.getString("CHEF_NAME");
+        recipeName = extras.getString("RECIPE_NAME");
+
+        recipeTitle = (TextView) findViewById(R.id.recipe_name);
+        recipeTitle.setText(recipeName);
+        TextView chefNameTextView = (TextView) findViewById(R.id.chef_name);
+        chefNameTextView.setText(chefName);
 
         appointmentDate = (TextView)findViewById(R.id.appointmentDate);
         appointmentTime = (TextView)findViewById(R.id.appointmentTime);
@@ -144,11 +154,8 @@ public class RequestAppointment extends AppCompatActivity {
         final String note = noteEditText.getText().toString();
         final String recipe = recipeTitle.getText().toString();
         final String status = "requested";
-        final String chefUID = "test_id_chef";
-        final String studentUID = "test_id_student";
 
         appointment.put("appointment_time", appointmentTime);
-        appointment.put("chef_uid", chefUID);
         appointment.put("date_created", dateCreated);
         appointment.put("note", note);
         appointment.put("recipe", recipe);
