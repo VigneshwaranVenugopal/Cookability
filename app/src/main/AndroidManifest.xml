@@ -54,6 +54,9 @@
         <meta-data
             android:name="com.mypackage.MyGlideModule"
             android:value="GlideModule" />
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
 
         <activity
             android:name=".AddActivity"
@@ -69,7 +72,9 @@
             android:name=".notification"
             android:label="@string/title_activity_notification"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".SearchActivity"></activity>
+        <activity android:name=".SearchActivity" />
+        <activity android:name=".NotificationFile.ShowNotifActivity" />
+        <activity android:name=".NotificationFile.NotificationActivity"></activity>
     </application>
 
 </manifest>

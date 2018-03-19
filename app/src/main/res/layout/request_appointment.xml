@@ -28,7 +28,7 @@
             android:text="Recipe: " />
 
         <TextView
-            android:id="@+id/recipe_title"
+            android:id="@+id/recipe_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="1"
@@ -47,7 +47,7 @@
             android:text="Chef: " />
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/chef_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="1"

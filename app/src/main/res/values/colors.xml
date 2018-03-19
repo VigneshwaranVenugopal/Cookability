@@ -3,4 +3,12 @@
     <color name="colorPrimary">#E8620C</color>
     <color name="colorPrimaryDark">#E8620C</color>
     <color name="colorAccent">#555555</color>
+
+    <color name="textTabLight">#009BFC</color>
+    <color name="textTabBright">#ffffff</color>
+    <color name="notifBright">#000000</color>
+    <color name="WHITE">#FFFFFF</color>
+    <color name="btnLight">#C0C0C0</color>
+    <color name="btnBright">#FFA500</color>
+    <color name="outline_gray">#cccccc</color>
 </resources>
