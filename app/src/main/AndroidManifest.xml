@@ -68,6 +68,9 @@
             android:name=".RequestAppointment"
             android:label="RequestAppointment" />
         <activity
+            android:name=".Appointments"
+            android:label="Appointments" />
+        <activity
             android:name=".RecipePage"
             android:label="RecipePage" />
         <activity
