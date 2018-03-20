@@ -73,12 +73,16 @@ public class NotificationActivity extends AppCompatActivity {
                         curNotif.setNotificationId(documentSnapshot.getId());
                         curNotif.setFromName(documentSnapshot.getString("fromName"));
                         curNotif.setFromId(documentSnapshot.getString("fromId"));
-                        curNotif.setFromImage(documentSnapshot.getString("fromImage"));
+//                        curNotif.setFromImage(documentSnapshot.getString("fromImage"));
                         curNotif.setMessage(documentSnapshot.getString("message"));
                         curNotif.setCurrentId(documentSnapshot.getString("currentId"));
                         curNotif.setCurrentName(documentSnapshot.getString("currentName"));
-                        curNotif.setCurrentImage(documentSnapshot.getString("currentImage"));
+//                        curNotif.setCurrentImage(documentSnapshot.getString("currentImage"));
                         curNotif.setAbstr(documentSnapshot.getString("abstr"));
+
+                        curNotif.setNote(documentSnapshot.getString("note"));
+                        curNotif.setRecipeName(documentSnapshot.getString("recipeName"));
+                        curNotif.setRequestedTime("requestedTime");
 
                         notificationList.add(curNotif);
                         notifRecyclerAdapter.notifyDataSetChanged();

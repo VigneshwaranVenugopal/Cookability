@@ -34,20 +34,26 @@ import map.cookability.R;
 
 public class ShowNotifActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private TextView mMessage;
+    private TextView mRecipeName;
     private TextView mName;
+    private TextView mTime;
+    private TextView mNote;
     private Button acceptBtn;
     private Button declineBtn;
+
 
     private ProgressBar mResponseProgressBar;
 
     private String fromId;
     private String fromName;
-    private String fromImage;
+    private String requestedTime;
+    private String note;
+    private String recipeName;
+//    private String fromImage;
 
 
     private String currentName;
-    private String currentImage;
+//    private String currentImage;
     private String currentId;
 
     private String message;
@@ -56,30 +62,42 @@ public class ShowNotifActivity extends AppCompatActivity implements View.OnClick
 
     private String sendMessage;
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_notif);
 
         Intent intent = getIntent();
-        message = intent.getStringExtra("message");
+//        message = intent.getStringExtra("message");
         fromId = intent.getStringExtra("fromId");
         fromName = intent.getStringExtra("fromName");
-        fromImage = intent.getStringExtra("fromImage");
+        recipeName = intent.getStringExtra("recipeName");
+        note = intent.getStringExtra("note");
+        requestedTime = intent.getStringExtra("requestedTime");
+
+//        fromImage = intent.getStringExtra("fromImage");
 
 
         currentId = intent.getStringExtra("currentId");
         currentName = intent.getStringExtra("currentName");
-        currentImage = intent.getStringExtra("currentImage");
+//        currentImage = intent.getStringExtra("currentImage");
 
-        mMessage = (TextView) findViewById(R.id.show_notif_message);
+        mRecipeName = (TextView) findViewById(R.id.show_notif_recipe);
         mName = (TextView) findViewById(R.id.show_notif_fromName);
+        mNote = (TextView)findViewById(R.id.show_notif_note);
+        mTime = (TextView)findViewById(R.id.show_notif_time);
+
         acceptBtn = (Button) findViewById(R.id.show_notif_accept_btn);
         declineBtn = (Button) findViewById(R.id.show_notif_decline_btn);
         mResponseProgressBar = (ProgressBar)findViewById(R.id.responseProgressBar);
 
-        mMessage.setText("Appointment： " + message);
+        mRecipeName.setText("Recipe name： " + recipeName);
         mName.setText("From: " + fromName);
+        mNote.setText("Note: " + note);
+        mTime.setText("Request time: " + requestedTime);
 
         acceptBtn.setOnClickListener(this);
         declineBtn.setOnClickListener(this);
@@ -118,12 +136,16 @@ public class ShowNotifActivity extends AppCompatActivity implements View.OnClick
         notificationMap.put("message", sendMessage);
         notificationMap.put("fromId", currentId);
         notificationMap.put("fromName",currentName);
-        notificationMap.put("fromImage",currentImage);
+//        notificationMap.put("fromImage",currentImage);
         notificationMap.put("read","false");
         notificationMap.put("currentId",fromId);
         notificationMap.put("currentName",fromName);
-        notificationMap.put("currentImage",fromImage);
+//        notificationMap.put("currentImage",fromImage);
         notificationMap.put("timeStamp", FieldValue.serverTimestamp());
+
+        notificationMap.put("requireTime",requestedTime);
+        notificationMap.put("recipeTitle", recipeName);
+        notificationMap.put("note", note);
 
         mFirestore.collection("Users/" + fromId+"/Notification").add(notificationMap).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
