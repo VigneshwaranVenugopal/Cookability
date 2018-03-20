@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity
                             case R.id.bottombaritem_home:
                                 // TODO
                                 return true;
-                            case R.id.bottombaritem_messages:
+                            case R.id.bottombaritem_search:
                                 Intent intentSearch = new Intent(getBaseContext(), SearchActivity.class);
                                 startActivity(intentSearch);
                                 break;

@@ -19,7 +19,11 @@
             android:elevation="4dp" />
 
     </android.support.design.widget.AppBarLayout>
-    <include layout="@layout/content_main" />
+
+    <include
+        layout="@layout/content_main"
+        android:layout_height="456dp"
+        android:layout_width="match_parent" />
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottom_nav"
