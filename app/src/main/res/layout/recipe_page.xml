@@ -23,24 +23,30 @@
             android:id="@+id/recipe_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_margin="10dp"
+            android:layout_gravity="center_horizontal"
             android:fontFamily="@font/nunito_semibold"
             android:text="Recipe Name"
-            android:textAlignment="viewEnd"
-            android:textSize="24sp" />
+
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/chef_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:fontFamily="@font/nunito_semibold"
             android:text="by "
-            android:textSize="18sp" />
+            android:textSize="12sp" />
 
         <RatingBar
             android:id="@+id/ratingBar"
+            style="?android:attr/ratingBarStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="?android:attr/ratingBarStyleSmall"
+            android:layout_gravity="center_horizontal"
             android:numStars="5"
             android:stepSize="1.0"
             tools:layout_editor_absoluteX="189dp"
@@ -50,16 +56,22 @@
             android:id="@+id/recipe_category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:fontFamily="@font/nunito_semibold"
             android:text="recipe_category"
-            android:textSize="18sp" />
+            android:textSize="12sp" />
 
         <Button
             android:id="@+id/schedule_appointment_button"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/nav_header_height"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center"
+            android:layout_margin="20dp"
+            android:background="@color/btnBright"
+            android:backgroundTint="@color/btnBright"
             android:onClick="openRequestAppointment"
             android:text="Schedule a Lesson"
+            android:textColor="@color/WHITE"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             tools:layout_editor_absoluteY="355dp" />

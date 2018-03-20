@@ -15,6 +15,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import org.w3c.dom.Text;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -58,16 +60,19 @@ public class AppointmentAdapter extends BaseAdapter {
         TextView appointmentDate = rowView.findViewById(R.id.appointment_date);
         TextView recipeName = rowView.findViewById(R.id.recipe_name);
         TextView chefName = rowView.findViewById(R.id.chef_name);
+        TextView studentUID = rowView.findViewById(R.id.student_uid);
 
 
         Map<String, Object> appointment = (Map<String, Object>) getItem(position);
         String appointmentTime = (String) appointment.get("appointment_time");
         String recipeNameString = (String) appointment.get("recipe");
-        String chefNameString = (String) appointment.get("chef_uid");
+        String chefUIDString = (String) appointment.get("chef_uid");
+        String studentUIDString = (String) appointment.get("student_uid");
 
         appointmentDate.setText(appointmentTime);
         recipeName.setText(recipeNameString);
-        chefName.setText(chefNameString);
+        chefName.setText(chefUIDString);
+        studentUID.setText(studentUIDString);
         return rowView;
     }
 }

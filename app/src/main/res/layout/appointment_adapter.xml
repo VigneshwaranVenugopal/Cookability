@@ -38,5 +38,16 @@
             android:textStyle="bold"
             android:typeface="sans" />
 
+        <TextView
+            android:id="@+id/student_uid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="student uid"
+            android:textAlignment="center"
+            android:textColor="#040404"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:typeface="sans" />
+
 
 </LinearLayout>
