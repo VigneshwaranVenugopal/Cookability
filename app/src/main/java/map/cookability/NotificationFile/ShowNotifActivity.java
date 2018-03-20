@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,18 +20,24 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
+import map.cookability.AppointmentAdapter;
 import map.cookability.R;
+
+import static map.cookability.Appointments.UID;
 
 public class ShowNotifActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -173,7 +180,14 @@ public class ShowNotifActivity extends AppCompatActivity implements View.OnClick
             }
         });
 
+        // change the status of appointment to Accepted;
+        if (flag){
 
+        }
+        //change the status of appointment to declined;
+        else {
+
+        }
     }
 
 
