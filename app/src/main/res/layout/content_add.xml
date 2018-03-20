@@ -15,23 +15,28 @@
 
         <TextView
             android:id="@+id/TextViewTitle"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Name"
-            android:textSize="10pt">
-        </TextView>
+            android:textAlignment="center"
+            android:textSize="10pt"
+            android:textStyle="bold"></TextView>
+
         <EditText
             android:id="@+id/EditTextName"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:hint="@string/recipe"
-            android:layout_width="fill_parent">
-        </EditText>
+            android:textAlignment="center"></EditText>
+
         <TextView
             android:id="@+id/category"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Category"
-            android:textSize="10pt"/>
+            android:textAlignment="center"
+            android:textSize="10pt"
+            android:textStyle="bold" />
 
         <Spinner
             android:id="@+id/categorySpinner"
@@ -39,12 +44,15 @@
             android:layout_height="50dp"
             android:entries="@array/categoryList"
             android:prompt="@string/app_name"></Spinner>
+
         <TextView
             android:id="@+id/nonveg"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Veg/Non-Veg"
-            android:textSize="10pt"/>
+            android:textAlignment="center"
+            android:textSize="10pt"
+            android:textStyle="bold" />
 
         <Spinner
             android:id="@+id/nonvegSpinner"
@@ -55,10 +63,12 @@
 
         <TextView
             android:id="@+id/ingridients"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Ingredients"
-            android:textSize="10pt" />
+            android:textAlignment="center"
+            android:textSize="10pt"
+            android:textStyle="bold" />
 
 
         <EditText
@@ -66,36 +76,42 @@
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:ems="7"
-            android:inputType="textMultiLine" />
+            android:inputType="textMultiLine"
+            android:textAlignment="center" />
 
         <TextView
             android:id="@+id/steps"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Method"
-            android:textSize="10pt"/>
+            android:textAlignment="center"
+            android:textSize="10pt"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/stepsText"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:ems="7"
-            android:inputType="textMultiLine" />
+            android:inputType="textMultiLine"
+            android:textAlignment="center" />
 
         <Button
             android:id="@+id/takePhoto"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Take Photo"/>
+            android:backgroundTint="@color/ic_searchButton_background"
+            android:text="Take Photo" />
         <ImageView
             android:id="@+id/mImageView"
             android:layout_width="wrap_content"
             android:layout_height="550dp" />
+
         <Button
             android:id="@+id/submitButton"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Submit"/>
+            android:text="Submit" />
     </LinearLayout>
 
 </android.support.v4.widget.NestedScrollView>
