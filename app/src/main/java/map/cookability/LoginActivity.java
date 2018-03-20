@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.sinch.android.rtc.SinchError;
 
 public class LoginActivity extends BaseActivity implements SinchService.StartFailedListener {
@@ -49,7 +50,7 @@ public class LoginActivity extends BaseActivity implements SinchService.StartFai
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loginClicked();
+
             }
         });
     }
@@ -58,6 +59,7 @@ public class LoginActivity extends BaseActivity implements SinchService.StartFai
     protected void onServiceConnected() {
         mLoginButton.setEnabled(true);
         getSinchServiceInterface().setStartListener(this);
+        loginClicked();
     }
 
     @Override
@@ -82,8 +84,9 @@ public class LoginActivity extends BaseActivity implements SinchService.StartFai
     }
 
     private void loginClicked() {
-        String userName = mLoginName.getText().toString();
+        //String userName = mLoginName.getText().toString();
 
+        String userName = FirebaseAuth.getInstance().getUid();
         if (userName.isEmpty()) {
             Toast.makeText(this, "Please enter a name", Toast.LENGTH_LONG).show();
             return;

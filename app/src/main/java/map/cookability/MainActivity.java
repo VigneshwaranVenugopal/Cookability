@@ -15,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -112,6 +113,14 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         getData();
@@ -169,6 +178,8 @@ public class MainActivity extends AppCompatActivity
         });
 
     }
+    ListView listView = (ListView) findViewById(R.id.timeline);
+
 
     public final void getData(){
 
@@ -180,7 +191,6 @@ public class MainActivity extends AppCompatActivity
                         if (task.isSuccessful()) {
                             ArrayList<Recipe> eventList = new ArrayList<>();
                             for (DocumentSnapshot document : task.getResult()) {
-                                final ListView listView = (ListView) findViewById(R.id.timeline);
                                 Recipe current = new Recipe(document.getId(),document.getData());
                                 String e = current.title;
                                 Log.d("Result", e + " => " + document.getData());
@@ -271,8 +281,7 @@ public class MainActivity extends AppCompatActivity
             finish();
 
         } else if (id == R.id.nav_share) {
-            Intent intent = new Intent(this, LoginActivity.class);
-            startActivity(intent);
+
 
         } else if (id == R.id.nav_send) {
 
