@@ -26,7 +26,9 @@
             android:layout_gravity="fill_horizontal"
             android:layout_row="0"
             android:layout_rowWeight="1"
-            android:text="Recipe: " />
+            android:fontFamily="@font/nunito_semibold"
+            android:text="Recipe: "
+            android:textColor="@android:color/black" />
 
         <TextView
             android:id="@+id/recipe_name"
@@ -36,7 +38,9 @@
             android:layout_gravity="fill_horizontal"
             android:layout_row="0"
             android:layout_rowWeight="1"
-            android:text="recipe name" />
+            android:fontFamily="@font/nunito_semibold"
+            android:text="recipe name"
+            android:textColor="@android:color/black" />
 
         <TextView
             android:id="@+id/textView5"
@@ -45,7 +49,9 @@
             android:layout_column="0"
             android:layout_row="1"
             android:layout_rowWeight="1"
-            android:text="Chef: " />
+            android:fontFamily="@font/nunito_semibold"
+            android:text="Chef: "
+            android:textColor="@android:color/black" />
 
         <TextView
             android:id="@+id/chef_name"
@@ -55,7 +61,9 @@
             android:layout_gravity="fill_horizontal"
             android:layout_row="1"
             android:layout_rowWeight="1"
-            android:text="chef name" />
+            android:fontFamily="@font/nunito_semibold"
+            android:text="chef name"
+            android:textColor="@android:color/black" />
 
         <TextView
             android:id="@+id/textView7"
@@ -64,7 +72,9 @@
             android:layout_column="0"
             android:layout_row="2"
             android:layout_rowWeight="1"
-            android:text="Date" />
+            android:fontFamily="@font/nunito_semibold"
+            android:text="Date"
+            android:textColor="@android:color/black" />
 
         <TextView
             android:id="@+id/appointmentDate"
@@ -74,7 +84,9 @@
             android:layout_columnWeight="2.5"
             android:layout_row="2"
             android:layout_rowWeight="1"
-            android:text="" />
+            android:fontFamily="@font/nunito_semibold"
+            android:text=""
+            android:textColor="@android:color/black" />
 
         <TextView
             android:id="@+id/appointmentTime"
@@ -84,29 +96,35 @@
             android:layout_columnWeight="2.5"
             android:layout_row="2"
             android:layout_rowWeight="1"
-            android:text="" />
+            android:fontFamily="@font/nunito_semibold"
+            android:text=""
+            android:textColor="@android:color/black" />
 
         <Button
             android:id="@+id/datePickerButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
             android:layout_column="3"
             android:layout_columnWeight="1"
             android:layout_row="2"
+            android:background="@drawable/primary_color_btn"
             android:minHeight="0dp"
             android:minWidth="0dp"
-            android:text="Date" />
+            android:text="Date"
+            android:textColor="@android:color/white" />
 
         <Button
             android:id="@+id/timePickerButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
             android:layout_column="4"
             android:layout_columnWeight="1"
             android:layout_row="2"
+            android:background="@drawable/primary_color_btn"
             android:minHeight="0dp"
             android:minWidth="0dp"
-            android:text="Time" />
+            android:text="Time"
+            android:textColor="@android:color/white" />
 
         <TextView
             android:id="@+id/textView12"
@@ -115,7 +133,9 @@
             android:layout_column="0"
             android:layout_row="3"
             android:layout_rowWeight="1"
-            android:text="Note: " />
+            android:fontFamily="@font/nunito_semibold"
+            android:text="Note: "
+            android:textColor="@android:color/black" />
 
         <EditText
             android:id="@+id/noteEditText"
@@ -125,33 +145,23 @@
             android:layout_gravity="fill_horizontal"
             android:layout_row="3"
             android:layout_rowWeight="1"
-            android:text="" />
+            android:fontFamily="@font/nunito_semibold"
+            android:text=""
+            android:textColor="@android:color/black" />
     </GridLayout>
 
     <Button
         android:id="@+id/addAppointment_btn"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="56dp"
+        android:layout_marginBottom="172dp"
+        android:background="@drawable/primary_color_btn"
         android:onClick="addAppointment"
-        android:text="Add Appointment"
+        android:text="Request Appointment"
+        android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.375"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
-
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/bottom_nav"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        app:itemBackground="?attr/colorPrimary"
-        app:itemIconTint="@android:color/white"
-        app:itemTextColor="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottombar_menu" />
 
     <ProgressBar
         android:id="@+id/messageProgressBar"
@@ -166,6 +176,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="1dp" />
+        tools:layout_editor_absoluteY="1dp"
+        tools:ignore="MissingConstraints" />
 
 </android.support.constraint.ConstraintLayout>

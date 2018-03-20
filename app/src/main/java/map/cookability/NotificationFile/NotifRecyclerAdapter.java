@@ -99,7 +99,7 @@ public class NotifRecyclerAdapter extends RecyclerView.Adapter<NotifRecyclerAdap
             public void onClick(View v) {
                 Map<String, Object> map = new HashMap<>();
                 map.put("read", "true");
-                mFirestore.collection("Users").document(mAuth.getCurrentUser().getUid()).collection("Notification").document(notificationId).update(map);
+                mFirestore.collection("users").document(mAuth.getCurrentUser().getUid()).collection("Notification").document(notificationId).update(map);
 
                 Intent intent = new Intent(context, ShowNotifActivity.class);
                 intent.putExtra("fromId", fromId);

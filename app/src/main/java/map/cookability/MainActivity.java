@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity
                 .addApi(Auth.GOOGLE_SIGN_IN_API,gso)
                 .build();
 
-                bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_nav);
+//                bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_nav);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

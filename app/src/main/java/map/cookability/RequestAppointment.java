@@ -108,7 +108,8 @@ public class RequestAppointment extends AppCompatActivity {
                 }
 
 
-                final String appointmentTime = Long.toString(timestampDate);
+
+
 
                 //send Notification
 //                db.collection("users").document(chefUID).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -144,6 +145,7 @@ public class RequestAppointment extends AppCompatActivity {
 //                });
 
                 String message = "Hi " + chefName + ", I'm " +studentName + " I want to learn how to cook " + recipeName + " !" ;
+                String time = "" + appointmentDate.getText().toString() + " at "+ appointmentTime.getText().toString() + " UTC-7";
 
                 Map<String, Object> notificationMap = new HashMap<>();
                 notificationMap.put("abstr","appointment");
@@ -157,7 +159,7 @@ public class RequestAppointment extends AppCompatActivity {
 //                notificationMap.put("currentImage",mUserImage);
                 notificationMap.put("timeStamp", FieldValue.serverTimestamp());
 
-                notificationMap.put("requestedTime",appointmentTime);
+                notificationMap.put("requestedTime",time);
                 notificationMap.put("recipeName", recipeName);
                 notificationMap.put("note", noteEditText.getText().toString());
 
