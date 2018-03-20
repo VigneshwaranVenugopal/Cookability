@@ -23,6 +23,8 @@
             android:id="@+id/recipe_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_margin="10dp"
             android:layout_gravity="center_horizontal"
             android:fontFamily="@font/nunito_semibold"
             android:text="Recipe Name"
@@ -34,15 +36,17 @@
             android:id="@+id/chef_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:fontFamily="@font/nunito_semibold"
             android:text="by "
             android:textSize="12sp" />
 
         <RatingBar
             android:id="@+id/ratingBar"
+            style="?android:attr/ratingBarStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="?android:attr/ratingBarStyleSmall"
+            android:layout_gravity="center_horizontal"
             android:numStars="5"
             android:stepSize="1.0"
             tools:layout_editor_absoluteX="189dp"
@@ -52,6 +56,7 @@
             android:id="@+id/recipe_category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:fontFamily="@font/nunito_semibold"
             android:text="recipe_category"
             android:textSize="12sp" />
@@ -61,6 +66,7 @@
             android:layout_width="@dimen/nav_header_height"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal|center"
+            android:layout_margin="20dp"
             android:background="@color/btnBright"
             android:backgroundTint="@color/btnBright"
             android:onClick="openRequestAppointment"
