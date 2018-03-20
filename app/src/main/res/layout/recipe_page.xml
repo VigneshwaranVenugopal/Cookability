@@ -1,42 +1,57 @@
-<android.support.constraint.ConstraintLayout
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:columnCount="2">
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:columnCount="2"
+        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/recipe_list_thumbnail"
-            android:layout_width="397dp"
-            android:layout_height="335dp"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/fui_auth_method_button_width"
             android:layout_columnSpan="2"
-            android:layout_row="0"/>
+            android:layout_row="0" />
+
         <TextView
             android:id="@+id/recipe_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="0"
             android:layout_row="1"
-            android:text="recipe_name" />
+            android:fontFamily="@font/nunito_semibold"
+            android:text="Recipe Name"
+            android:textAlignment="viewEnd"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/textView0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_row="2"
             android:layout_column="0"
-            android:text="Category: " />
+            android:layout_row="2"
+            android:fontFamily="@font/nunito_semibold"
+            android:text="Cuisine: "
+            android:textAlignment="textEnd"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/recipe_category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_row="2"
             android:layout_column="1"
-            android:text="recipe_category" />
+            android:layout_row="2"
+            android:fontFamily="@font/nunito_semibold"
+            android:text="recipe_category"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/textView1"
@@ -44,7 +59,9 @@
             android:layout_height="wrap_content"
             android:layout_column="0"
             android:layout_row="3"
-            android:text="Chef: " />
+            android:fontFamily="@font/nunito_semibold"
+            android:text="Chef: "
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/chef_name"
@@ -52,17 +69,25 @@
             android:layout_height="wrap_content"
             android:layout_column="1"
             android:layout_row="3"
-            android:text="chef_name" />
+            android:fontFamily="@font/nunito_semibold"
+            android:text="chef_name"
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/schedule_appointment_button"
-            android:onClick="openRequestAppointment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="0"
-            android:layout_row="4"
-            android:text="Schedule Appointment" />
+            android:onClick="openRequestAppointment"
+            android:text="Schedule Appointment"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:layout_editor_absoluteY="355dp" />
+
     </GridLayout>
+
+
+
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottom_nav"
         android:layout_width="wrap_content"

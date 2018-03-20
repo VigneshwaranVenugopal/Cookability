@@ -5,6 +5,7 @@ package map.cookability.NotificationFile;
  */
 
 public class Notifications {
+    private String abstr;
     private String message;
     private String fromImage;
     private String fromName;
@@ -12,6 +13,8 @@ public class Notifications {
     private String read;
     private String notificationId;
     private String currentId;
+    private String currentName;
+    private String currentImage;
 
     public Notifications(){
 
@@ -71,5 +74,29 @@ public class Notifications {
 
     public void setCurrentId(String currentId) {
         this.currentId = currentId;
+    }
+
+    public String getAbstr() {
+        return abstr;
+    }
+
+    public void setAbstr(String abstr) {
+        this.abstr = abstr;
+    }
+
+    public String getCurrentName() {
+        return currentName;
+    }
+
+    public void setCurrentName(String currentName) {
+        this.currentName = currentName;
+    }
+
+    public String getCurrentImage() {
+        return currentImage;
+    }
+
+    public void setCurrentImage(String currentImage) {
+        this.currentImage = currentImage;
     }
 }

@@ -1,9 +1,11 @@
 package map.cookability.NotificationFile;
 
 import android.content.Intent;
+import android.icu.util.Calendar;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -17,33 +19,42 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import map.cookability.R;
 
 public class ShowNotifActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private TextView message;
-    private TextView fromName;
+    private TextView mMessage;
+    private TextView mName;
     private Button acceptBtn;
     private Button declineBtn;
 
     private ProgressBar mResponseProgressBar;
 
     private String fromId;
+    private String fromName;
+    private String fromImage;
 
-    private FirebaseAuth mAuth;
+
+    private String currentName;
+    private String currentImage;
+    private String currentId;
+
+    private String message;
+
     private FirebaseFirestore mFirestore;
 
-
-    private String mCurrentName;
-    private String mcurrentImage;
-    private String mMessage;
-    private String currentId;
+    private String sendMessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,23 +62,28 @@ public class ShowNotifActivity extends AppCompatActivity implements View.OnClick
         setContentView(R.layout.activity_show_notif);
 
         Intent intent = getIntent();
+        message = intent.getStringExtra("message");
         fromId = intent.getStringExtra("fromId");
-        currentId = intent.getStringExtra("currentId");
+        fromName = intent.getStringExtra("fromName");
+        fromImage = intent.getStringExtra("fromImage");
 
-        message = (TextView) findViewById(R.id.show_notif_message);
-        fromName = (TextView) findViewById(R.id.show_notif_fromName);
+
+        currentId = intent.getStringExtra("currentId");
+        currentName = intent.getStringExtra("currentName");
+        currentImage = intent.getStringExtra("currentImage");
+
+        mMessage = (TextView) findViewById(R.id.show_notif_message);
+        mName = (TextView) findViewById(R.id.show_notif_fromName);
         acceptBtn = (Button) findViewById(R.id.show_notif_accept_btn);
         declineBtn = (Button) findViewById(R.id.show_notif_decline_btn);
         mResponseProgressBar = (ProgressBar)findViewById(R.id.responseProgressBar);
 
-
-        message.setText("Appointment： " + intent.getStringExtra("message"));
-        fromName.setText("From: " + intent.getStringExtra("fromName"));
+        mMessage.setText("Appointment： " + message);
+        mName.setText("From: " + fromName);
 
         acceptBtn.setOnClickListener(this);
         declineBtn.setOnClickListener(this);
 
-        mAuth = FirebaseAuth.getInstance();
         mFirestore = FirebaseFirestore.getInstance();
     }
 
@@ -83,40 +99,31 @@ public class ShowNotifActivity extends AppCompatActivity implements View.OnClick
 
     }
 
+
+
     private void sendNotification(boolean flag) {
 
 
-        mResponseProgressBar.setVisibility(View.VISIBLE);
-
-        final String mCurrentId = mAuth.getCurrentUser().getUid();
-        mFirestore.collection("Users").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()){
-                    for (DocumentSnapshot documentSnapshot : task.getResult()){
-                        if (documentSnapshot.getId().equals(mCurrentId)){
-                            mCurrentName = documentSnapshot.getString("name");
-                            mcurrentImage = documentSnapshot.getString("image");
-                            break;
-                        }
-                    }
-                }
-
-            }
-        });
+        String abstr;
         if (flag){
-            mMessage = "Yes: "+ mCurrentName + "accepts your request!";
+            sendMessage = "Yes: "+ currentName + "accepts your request!";
+            abstr = "accept";
         }else{
-            mMessage = "sorry: " + mCurrentName + "declines your request!";
+            sendMessage = "sorry: " + currentName + "declines your request!";
+            abstr = "decline";
         }
 
         Map<String, Object> notificationMap = new HashMap<>();
-        notificationMap.put("message", mMessage);
-        notificationMap.put("fromId", mCurrentId);
-        notificationMap.put("fromName",mCurrentName);
-        notificationMap.put("fromImage",mcurrentImage);
+        notificationMap.put("abstr", abstr);
+        notificationMap.put("message", sendMessage);
+        notificationMap.put("fromId", currentId);
+        notificationMap.put("fromName",currentName);
+        notificationMap.put("fromImage",currentImage);
         notificationMap.put("read","false");
         notificationMap.put("currentId",fromId);
+        notificationMap.put("currentName",fromName);
+        notificationMap.put("currentImage",fromImage);
+        notificationMap.put("timeStamp", FieldValue.serverTimestamp());
 
         mFirestore.collection("Users/" + fromId+"/Notification").add(notificationMap).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
@@ -134,6 +141,9 @@ public class ShowNotifActivity extends AppCompatActivity implements View.OnClick
             }
         });
 
+
     }
+
+
 
 }

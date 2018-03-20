@@ -50,6 +50,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import map.cookability.NotificationFile.NotificationActivity;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, GoogleApiClient.OnConnectionFailedListener, View.OnClickListener {
     public static final String RECIPE_PAGE_TITLE_MESSAGE = "";
@@ -252,6 +254,8 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(getBaseContext(), ProfileActivity.class);
             startActivity(intent);
         } else if (id == R.id.notification) {
+            Intent intent = new Intent(this, NotificationActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_slideshow) {
 
