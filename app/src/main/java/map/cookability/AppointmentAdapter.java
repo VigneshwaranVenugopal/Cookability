@@ -2,6 +2,8 @@ package map.cookability;
 
 import android.content.Context;
 import android.net.Uri;
+import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,16 +55,19 @@ public class AppointmentAdapter extends BaseAdapter {
 
         View rowView = mInflater.inflate(R.layout.appointment_adapter, parent, false);
 
-        // Get title element
-        TextView appointmentDate =
-                (TextView) rowView.findViewById(R.id.appointment_date);
+        TextView appointmentDate = rowView.findViewById(R.id.appointment_date);
+        TextView recipeName = rowView.findViewById(R.id.recipe_name);
+        TextView chefName = rowView.findViewById(R.id.chef_name);
 
 
         Map<String, Object> appointment = (Map<String, Object>) getItem(position);
+        String appointmentTime = (String) appointment.get("appointment_time");
+        String recipeNameString = (String) appointment.get("recipe");
+        String chefNameString = (String) appointment.get("chef_uid");
 
-        String note = (String) appointment.get("note");
-
-        appointmentDate.setText(note);
+        appointmentDate.setText(appointmentTime);
+        recipeName.setText(recipeNameString);
+        chefName.setText(chefNameString);
         return rowView;
     }
 }
