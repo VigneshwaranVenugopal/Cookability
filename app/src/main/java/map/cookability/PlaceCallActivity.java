@@ -18,11 +18,14 @@ public class PlaceCallActivity extends BaseActivity {
 
     private Button mCallButton;
     private EditText mCallName;
-
+    String ChefUID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+
+        Bundle extras = getIntent().getExtras();
+        ChefUID = extras.getString("CHEF");
 
         mCallName = findViewById(R.id.callName);
         mCallButton = findViewById(R.id.callButton);

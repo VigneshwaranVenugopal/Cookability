@@ -1,10 +1,12 @@
 package map.cookability;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -21,6 +23,7 @@ import java.util.Map;
 public class Appointments extends AppCompatActivity {
     public static String UID;
     private static final String TAG = "Debug Tag";
+    Button call ;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
@@ -30,7 +33,9 @@ public class Appointments extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         UID = extras.getString("UID");
         getAppointments();
+
     }
+
 
     public void getAppointments() {
         db.collection("appointments").whereEqualTo("student_uid", UID)
@@ -56,9 +61,22 @@ public class Appointments extends AppCompatActivity {
                 });
     }
 
-    public void openVideoCall(View view) {
+
+    public void openButton(View view){
+
         TextView chefUID = findViewById(R.id.chef_name);
+        Intent intent = new Intent(this, LoginActivity.class);
+
+        String chef = chefUID.getText().toString();
+
+        Bundle extras = new Bundle();
+        extras.putString("CHEF",chef);
+        intent.putExtras(extras);
+
+        this.startActivity(intent);
     }
+
+
 
 }
 

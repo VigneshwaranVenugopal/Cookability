@@ -4,7 +4,7 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/startbg"
                 android:padding="0dip"
-                tools:context=".MakeCallActivity">
+                tools:context=".PlaceCallActivity">
 
     <LinearLayout
             android:layout_width="fill_parent"

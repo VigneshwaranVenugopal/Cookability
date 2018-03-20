@@ -25,11 +25,14 @@ public class LoginActivity extends BaseActivity implements SinchService.StartFai
     private EditText mLoginName;
     private ProgressDialog mSpinner;
 
-
+    String chefUID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+
+        Bundle extras = getIntent().getExtras();
+        chefUID = extras.getString("CHEF");
 
 
         int PERMISSION_ALL = 1;
@@ -106,6 +109,9 @@ public class LoginActivity extends BaseActivity implements SinchService.StartFai
 
     private void openPlaceCallActivity() {
         Intent mainActivity = new Intent(this, PlaceCallActivity.class);
+        Bundle extras = new Bundle();
+        extras.putString("CHEF",chefUID);
+        mainActivity.putExtras(extras);
         startActivity(mainActivity);
     }
 
