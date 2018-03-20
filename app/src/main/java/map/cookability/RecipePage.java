@@ -40,7 +40,7 @@ public class RecipePage extends AppCompatActivity {
         TextView recipeCategory = findViewById(R.id.recipe_category);
         recipeCategory.setText(recipeCategoryString);
         TextView chefNameTextView = findViewById(R.id.chef_name);
-        chefNameTextView.setText(chefName);
+        chefNameTextView.setText("by " + chefName);
 
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
