@@ -258,7 +258,8 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(this, NotificationActivity.class);
             startActivity(intent);
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.appointments) {
+            openAppointmentsPage();
 
         } else if (id == R.id.logout) {
 
@@ -310,6 +311,12 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
+    }
+
+    public void openAppointmentsPage() {
+        Intent intent = new Intent(this, Appointments.class);
+        intent.putExtra("UID", currentUserUID);
+        this.startActivity(intent);
     }
 
     public void startRecipePageActivity(Map recipe, String chefName) {

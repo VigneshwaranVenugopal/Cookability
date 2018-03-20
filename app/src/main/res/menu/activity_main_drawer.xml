@@ -13,9 +13,9 @@
             android:icon="@drawable/ic_menu_gallery"
             android:title="Notifications" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/appointments"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:title="Appointments" />
         <item
             android:id="@+id/logout"
             android:icon="@drawable/ic_power_settings_new_black_24dp"

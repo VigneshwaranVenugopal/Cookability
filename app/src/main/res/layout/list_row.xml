@@ -3,18 +3,18 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="5dip" >
+    android:padding="5dip">
 
     <!--  ListRow Left sied Thumbnail image -->
     <LinearLayout
         android:id="@+id/thumbnail"
-        android:onClick="openRecipePage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="3dip"
         android:layout_alignParentLeft="true"
-        android:layout_marginRight="5dip">
+        android:layout_marginRight="5dip"
+        android:onClick="openRecipePage"
+        android:orientation="vertical"
+        android:padding="3dip">
 
         <ImageView
             android:id="@+id/recipe_list_thumbnail"
@@ -23,78 +23,84 @@
             android:layout_gravity="center" />
     </LinearLayout>
 
-    <LinearLayout
+    <GridLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-    <!-- Title Of Song-->
-    <TextView
-        android:id="@+id/recipe_list_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/thumbnail"
-        android:fontFamily="@font/nunito_semibold"
-        android:text="Rihanna Love the way lie"
-        android:textAlignment="center"
-        android:textColor="#040404"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:typeface="sans" />
+        android:padding="10dp"
+        android:columnCount="2"
+        android:rowCount="2">
+        <!-- Title Of Song-->
+        <TextView
+            android:id="@+id/recipe_list_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/thumbnail"
+            android:layout_columnSpan="2"
+            android:layout_gravity="top|left"
+            android:fontFamily="@font/nunito_semibold"
+            android:text="Rihanna Love the way lie"
+            android:textColor="@color/colorAccent"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:typeface="sans" />
 
-    <!-- Artist Name -->
+        <!-- Artist Name -->
         <TextView
             android:id="@+id/recipe_list_subtitle"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/recipe_list_title"
+            android:layout_column="1"
+            android:layout_gravity="top|right"
             android:layout_marginTop="1dip"
+            android:layout_row="0"
             android:fontFamily="@font/nunito_semibold"
             android:text="Just gona stand there and ..."
             android:textAlignment="center"
-            android:textColor="@color/ic_launcher_background"
-            android:textSize="14sp" />
+            android:textColor="@color/colorAccent"
+            android:textSize="12sp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="20"
-                android:fontFamily="@font/nunito_semibold"
-                android:text="Cooking Duration:   "
-                android:textAlignment="textEnd"
-                android:textColor="@color/ic_launcher_background" />
+        <!--<TextView-->
+        <!--android:id="@+id/textView"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_weight="20"-->
+        <!--android:fontFamily="@font/nunito_semibold"-->
+        <!--android:text="Cooking Duration:   "-->
+        <!--android:textAlignment="textEnd"-->
+        <!--android:textColor="@color/colorAccent"-->
+        <!--android:textSize="12sp" />-->
 
-            <TextView
-                android:id="@+id/duration"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_alignParentTop="true"
-                android:layout_marginEnd="136dp"
-                android:layout_toStartOf="@+id/recipe_id"
-                android:fontFamily="@font/nunito_semibold"
-                android:gravity="right"
-                android:text="5:45"
-                android:textColor="@color/ic_launcher_background"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-
-        </LinearLayout>
-    <!-- Rightend Duration -->
+        <!--<TextView-->
+        <!--android:id="@+id/duration"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_marginEnd="136dp"-->
+        <!--android:layout_toStartOf="@+id/recipe_id"-->
+        <!--android:layout_weight="1"-->
+        <!--android:fontFamily="@font/nunito_semibold"-->
+        <!--android:gravity="right"-->
+        <!--android:text="5:45"-->
+        <!--android:textColor="@color/colorAccent"-->
+        <!--android:textSize="12sp" />-->
 
 
-    <TextView
-        android:id="@+id/recipe_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:visibility="invisible"
-        android:text="recipe_id" />
-    </LinearLayout>
+        <!--</LinearLayout>-->
+        <!-- Rightend Duration -->
+
+
+        <TextView
+            android:id="@+id/recipe_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:text="recipe_id"
+            android:visibility="invisible" />
+    </GridLayout>
 
 </LinearLayout>

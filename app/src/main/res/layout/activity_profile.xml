@@ -22,9 +22,10 @@
                 android:id="@+id/app_bar_image"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="?android:attr/colorBackground"
                 app:layout_collapseMode="parallax"
-                android:src="@android:drawable/sym_def_app_icon"
-                android:scaleType="centerCrop" />
+                app:srcCompat="?android:attr/colorBackground" />
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -44,8 +45,12 @@
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
+        android:layout_gravity="bottom|center_horizontal|end"
         android:layout_margin="16dp"
         android:clickable="true"
-        android:src="@android:drawable/ic_input_add" />
+        android:src="@android:drawable/ic_menu_camera"
+        android:theme="@style/AlertDialog.AppCompat"
+        android:tint="@color/WHITE"
+        app:backgroundTint="@color/ic_launcher_background"
+        app:rippleColor="@color/WHITE" />
 </android.support.design.widget.CoordinatorLayout>

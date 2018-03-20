@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">cookability</string>
+    <string name="app_name">Cookability</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -21,7 +21,7 @@
     <string name="recipe">Recipe</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password (optional)</string>
-    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in">Sign in or Register</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_invalid_password">This password is too short</string>
@@ -30,7 +30,7 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
-    <string name="title_activity_add">AddActivity</string>
+    <string name="title_activity_add">New Recipe</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 
@@ -120,6 +120,6 @@
         "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
         "when a user tries to pick up one of cards.\n\n"
     </string>
-    <string name="title_activity_notification">notification</string>
-    <string name="title_activity_profile">ProfileActivity</string>
+    <string name="title_activity_notification">Notification</string>
+    <string name="title_activity_profile">My Profile</string>
 </resources>

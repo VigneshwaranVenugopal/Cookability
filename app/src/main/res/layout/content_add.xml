@@ -15,87 +15,137 @@
 
         <TextView
             android:id="@+id/TextViewTitle"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Name"
-            android:textSize="10pt">
-        </TextView>
+            android:layout_margin="10dp"
+            android:background="@color/outline_gray"
+            android:fontFamily="@font/nunito_semibold"
+            android:text="Recipe Name"
+            android:textAlignment="center"
+            android:textSize="10pt"
+            android:textStyle="bold"></TextView>
+
         <EditText
             android:id="@+id/EditTextName"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/recipe"
-            android:layout_width="fill_parent">
-        </EditText>
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/nunito_semibold"
+            android:textAlignment="center"
+            android:textSize="12sp"></EditText>
+
         <TextView
             android:id="@+id/category"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Category"
-            android:textSize="10pt"/>
+            android:layout_margin="10dp"
+            android:background="@color/outline_gray"
+            android:fontFamily="@font/nunito_semibold"
+            android:text="Cuisine"
+            android:textAlignment="center"
+            android:textSize="10pt"
+            android:textStyle="bold" />
 
         <Spinner
             android:id="@+id/categorySpinner"
-            android:layout_width="fill_parent"
+            android:layout_width="@dimen/nav_header_height"
             android:layout_height="50dp"
+            android:layout_marginBottom="10dp"
+            android:layout_gravity="center_vertical|center"
             android:entries="@array/categoryList"
             android:prompt="@string/app_name"></Spinner>
+
         <TextView
             android:id="@+id/nonveg"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@color/outline_gray"
+            android:fontFamily="@font/nunito_semibold"
             android:text="Veg/Non-Veg"
-            android:textSize="10pt"/>
+            android:textAlignment="center"
+            android:textSize="10pt"
+            android:textStyle="bold" />
 
         <Spinner
             android:id="@+id/nonvegSpinner"
-            android:layout_width="fill_parent"
+            android:layout_width="@dimen/nav_header_height"
             android:layout_height="50dp"
+            android:layout_marginBottom="10dp"
+            android:layout_gravity="center_vertical|center_horizontal"
             android:entries="@array/feedbacktypelist"
             android:prompt="@string/app_name"></Spinner>
 
         <TextView
             android:id="@+id/ingridients"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@color/outline_gray"
+            android:fontFamily="@font/nunito_semibold"
             android:text="Ingredients"
-            android:textSize="10pt" />
+            android:textAlignment="center"
+            android:textSize="10pt"
+            android:textStyle="bold" />
 
 
         <EditText
             android:id="@+id/ingridientsText"
             android:layout_width="match_parent"
             android:layout_height="150dp"
+            android:layout_marginBottom="10dp"
             android:ems="7"
-            android:inputType="textMultiLine" />
+            android:inputType="textMultiLine"
+            android:textAlignment="center" />
 
         <TextView
             android:id="@+id/steps"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Method"
-            android:textSize="10pt"/>
+            android:layout_margin="10dp"
+            android:background="@color/outline_gray"
+            android:fontFamily="@font/nunito_semibold"
+            android:text="Cooking Steps"
+            android:textAlignment="center"
+            android:textSize="10pt"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/stepsText"
             android:layout_width="match_parent"
             android:layout_height="150dp"
+            android:layout_marginBottom="10dp"
             android:ems="7"
-            android:inputType="textMultiLine" />
+            android:inputType="textMultiLine"
+            android:textAlignment="center" />
 
         <Button
             android:id="@+id/takePhoto"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/nav_header_height"
             android:layout_height="wrap_content"
-            android:text="Take Photo"/>
+            android:layout_marginBottom="10dp"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/colorPrimary"
+            android:fontFamily="@font/nunito_semibold"
+            android:text="Take Photo"
+            android:textColor="@color/WHITE" />
+
         <ImageView
             android:id="@+id/mImageView"
             android:layout_width="wrap_content"
-            android:layout_height="550dp" />
+            android:layout_margin="10dp"
+            android:layout_height="wrap_content" />
+
         <Button
             android:id="@+id/submitButton"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/nav_header_height"
             android:layout_height="wrap_content"
-            android:text="Submit"/>
+            android:layout_margin="10dp"
+            android:layout_gravity="center_horizontal|center"
+            android:backgroundTint="@color/colorPrimary"
+            android:fontFamily="@font/nunito_semibold"
+            android:text="Submit"
+            android:textColor="@color/WHITE" />
     </LinearLayout>
 
 </android.support.v4.widget.NestedScrollView>

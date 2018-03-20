@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#e8620c</color>
-    <color name="colorPrimaryDark">#E8620C</color>
+    <color name="colorPrimaryDark">#e8620c</color>
     <color name="colorAccent">#555555</color>
 
     <color name="textTabLight">#009BFC</color>
     <color name="textTabBright">#ffffff</color>
     <color name="notifBright">#000000</color>
     <color name="WHITE">#ffffff</color>
-    <color name="btnLight">#C0C0C0</color>
+    <color name="btnLight">#c0c0c0</color>
     <color name="btnBright">#FFA500</color>
-    <color name="outline_gray">#cccccc</color>
+    <color name="outline_gray">#f0f0f0</color>
 </resources>
