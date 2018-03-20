@@ -76,6 +76,9 @@ public class NotificationActivity extends AppCompatActivity {
                         curNotif.setFromImage(documentSnapshot.getString("fromImage"));
                         curNotif.setMessage(documentSnapshot.getString("message"));
                         curNotif.setCurrentId(documentSnapshot.getString("currentId"));
+                        curNotif.setCurrentName(documentSnapshot.getString("currentName"));
+                        curNotif.setCurrentImage(documentSnapshot.getString("currentImage"));
+                        curNotif.setAbstr(documentSnapshot.getString("abstr"));
 
                         notificationList.add(curNotif);
                         notifRecyclerAdapter.notifyDataSetChanged();
