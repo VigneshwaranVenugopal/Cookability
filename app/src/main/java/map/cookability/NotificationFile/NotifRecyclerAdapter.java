@@ -48,9 +48,13 @@ public class NotifRecyclerAdapter extends RecyclerView.Adapter<NotifRecyclerAdap
         final String fromId = notificationList.get(position).getFromId();
         final String message = notificationList.get(position).getMessage();
         final String fromName = notificationList.get(position).getFromName();
+        final String fromImage = notificationList.get(position).getFromImage();
         final String read = notificationList.get(position).getRead();
         final String notificationId = notificationList.get(position).getNotificationId();
         final String currentId = notificationList.get(position).getCurrentId();
+        final String currentName = notificationList.get(position).getCurrentName();
+        final String currentImage = notificationList.get(position).getCurrentImage();
+        final String abstr = notificationList.get(position).getAbstr();
 
 
         final FirebaseFirestore mFirestore = FirebaseFirestore.getInstance();
@@ -65,6 +69,15 @@ public class NotifRecyclerAdapter extends RecyclerView.Adapter<NotifRecyclerAdap
         shape2.setColor(context.getResources().getColor(R.color.btnLight));
 
         holder.notif_message_view.setText("An appointment from" + fromName + "!");
+
+
+        if (abstr.equals("appointment")){
+            holder.notif_message_view.setText("An appointment from " + fromName + "!");
+        }else if (abstr.equals("accept")){
+            holder.notif_message_view.setText(fromName + " accepts your appointment" + "!");
+        }else if (abstr.equals("decline")){
+            holder.notif_message_view.setText(fromName + " declines your appointment" + "!");
+        }
 
         if (read.equals("false")){
             holder.notif_response.setBackground(shape1);
@@ -89,6 +102,11 @@ public class NotifRecyclerAdapter extends RecyclerView.Adapter<NotifRecyclerAdap
                 intent.putExtra("fromName",fromName);
                 intent.putExtra("message", message);
                 intent.putExtra("currentId",currentId);
+
+                intent.putExtra("message", message);
+                intent.putExtra("currentId",currentId);
+                intent.putExtra("currentName",currentName);
+                intent.putExtra("currentImage", currentImage);
 
                 context.startActivity(intent);
             }
