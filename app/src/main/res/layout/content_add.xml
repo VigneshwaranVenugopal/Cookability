@@ -17,6 +17,9 @@
             android:id="@+id/TextViewTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:background="@color/outline_gray"
+            android:fontFamily="@font/nunito_semibold"
             android:text="Name"
             android:textAlignment="center"
             android:textSize="10pt"
@@ -26,13 +29,19 @@
             android:id="@+id/EditTextName"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:fontFamily="@font/nunito_semibold"
             android:hint="@string/recipe"
-            android:textAlignment="center"></EditText>
+            android:textAlignment="center"
+            android:textSize="12sp"></EditText>
 
         <TextView
             android:id="@+id/category"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:background="@color/outline_gray"
+            android:fontFamily="@font/nunito_semibold"
             android:text="Category"
             android:textAlignment="center"
             android:textSize="10pt"
@@ -40,8 +49,10 @@
 
         <Spinner
             android:id="@+id/categorySpinner"
-            android:layout_width="fill_parent"
+            android:layout_width="@dimen/nav_header_height"
             android:layout_height="50dp"
+            android:paddingBottom="10dp"
+            android:layout_gravity="center_vertical|center"
             android:entries="@array/categoryList"
             android:prompt="@string/app_name"></Spinner>
 
@@ -49,6 +60,9 @@
             android:id="@+id/nonveg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:background="@color/outline_gray"
+            android:fontFamily="@font/nunito_semibold"
             android:text="Veg/Non-Veg"
             android:textAlignment="center"
             android:textSize="10pt"
@@ -56,8 +70,10 @@
 
         <Spinner
             android:id="@+id/nonvegSpinner"
-            android:layout_width="fill_parent"
+            android:layout_width="@dimen/nav_header_height"
             android:layout_height="50dp"
+            android:paddingBottom="10dp"
+            android:layout_gravity="center_vertical|center_horizontal"
             android:entries="@array/feedbacktypelist"
             android:prompt="@string/app_name"></Spinner>
 
@@ -65,6 +81,9 @@
             android:id="@+id/ingridients"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:background="@color/outline_gray"
+            android:fontFamily="@font/nunito_semibold"
             android:text="Ingredients"
             android:textAlignment="center"
             android:textSize="10pt"
@@ -75,6 +94,7 @@
             android:id="@+id/ingridientsText"
             android:layout_width="match_parent"
             android:layout_height="150dp"
+            android:paddingBottom="10dp"
             android:ems="7"
             android:inputType="textMultiLine"
             android:textAlignment="center" />
@@ -83,6 +103,9 @@
             android:id="@+id/steps"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:background="@color/outline_gray"
+            android:fontFamily="@font/nunito_semibold"
             android:text="Method"
             android:textAlignment="center"
             android:textSize="10pt"
@@ -92,26 +115,38 @@
             android:id="@+id/stepsText"
             android:layout_width="match_parent"
             android:layout_height="150dp"
+            android:paddingBottom="10dp"
             android:ems="7"
             android:inputType="textMultiLine"
             android:textAlignment="center" />
 
         <Button
             android:id="@+id/takePhoto"
-            android:layout_width="match_parent"
+            android:layout_width="@dimen/nav_header_height"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/ic_searchButton_background"
-            android:text="Take Photo" />
+            android:paddingBottom="10dp"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/colorPrimary"
+            android:fontFamily="@font/nunito_semibold"
+            android:text="Take Photo"
+            android:textColor="@color/WHITE" />
+
         <ImageView
             android:id="@+id/mImageView"
             android:layout_width="wrap_content"
+            android:padding="10dp"
             android:layout_height="550dp" />
 
         <Button
             android:id="@+id/submitButton"
-            android:layout_width="match_parent"
+            android:layout_width="@dimen/nav_header_height"
             android:layout_height="wrap_content"
-            android:text="Submit" />
+            android:padding="10dp"
+            android:layout_gravity="center_horizontal|center"
+            android:backgroundTint="@color/colorPrimary"
+            android:fontFamily="@font/nunito_semibold"
+            android:text="Submit"
+            android:textColor="@color/WHITE" />
     </LinearLayout>
 
 </android.support.v4.widget.NestedScrollView>

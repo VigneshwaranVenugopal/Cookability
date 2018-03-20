@@ -49,7 +49,8 @@
         android:layout_margin="16dp"
         android:clickable="true"
         android:src="@android:drawable/ic_menu_camera"
+        android:theme="@style/AlertDialog.AppCompat"
         android:tint="@color/WHITE"
         app:backgroundTint="@color/ic_launcher_background"
-        app:rippleColor="@color/fui_transparent" />
+        app:rippleColor="@color/WHITE" />
 </android.support.design.widget.CoordinatorLayout>

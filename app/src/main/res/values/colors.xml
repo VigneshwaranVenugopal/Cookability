@@ -10,5 +10,5 @@
     <color name="WHITE">#ffffff</color>
     <color name="btnLight">#c0c0c0</color>
     <color name="btnBright">#FFA500</color>
-    <color name="outline_gray">#cccccc</color>
+    <color name="outline_gray">#f0f0f0</color>
 </resources>

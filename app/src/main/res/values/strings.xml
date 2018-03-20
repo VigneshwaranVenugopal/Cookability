@@ -30,7 +30,7 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
-    <string name="title_activity_add">Add a New Recipe</string>
+    <string name="title_activity_add">New Recipe</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 
