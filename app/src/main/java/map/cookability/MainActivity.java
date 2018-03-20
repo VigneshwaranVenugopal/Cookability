@@ -57,6 +57,10 @@ public class MainActivity extends AppCompatActivity
     public static final String RECIPE_PAGE_TITLE_MESSAGE = "";
     public static final String RECIPE_PAGE_CHEF_MESSAGE = "";
     public static final String RECIPE_PAGE_IMG_SRC_MESSAGE = "";
+
+    String imagepath;
+
+
     @Override
     public void onClick(View view) {
     }
@@ -193,9 +197,6 @@ public class MainActivity extends AppCompatActivity
                 });
 
     }
-
-
-
 
 
     @Override
