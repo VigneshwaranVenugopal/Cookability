@@ -94,7 +94,7 @@ public class ShowNotifActivity extends AppCompatActivity implements View.OnClick
         declineBtn = (Button) findViewById(R.id.show_notif_decline_btn);
         mResponseProgressBar = (ProgressBar)findViewById(R.id.responseProgressBar);
 
-        mRecipeName.setText("Recipe name： " + recipeName);
+        mRecipeName.setText("Recipe name: " + recipeName);
         mName.setText("From: " + fromName);
         mNote.setText("Note: " + note);
         mTime.setText("Request time: " + requestedTime);
@@ -129,12 +129,16 @@ public class ShowNotifActivity extends AppCompatActivity implements View.OnClick
 //            }
 //        });
         String abstr;
+        String note;
         if (flag){
             sendMessage = "Yes: "+ currentName + "accepts your request!";
             abstr = "accept";
+            note = "yes, your appointment is accepted!";
+
         }else{
             sendMessage = "sorry: " + currentName + "declines your request!";
             abstr = "decline";
+            note = "sorry, your appointment is declined";
         }
 
         Map<String, Object> notificationMap = new HashMap<>();
@@ -149,11 +153,11 @@ public class ShowNotifActivity extends AppCompatActivity implements View.OnClick
 //        notificationMap.put("currentImage",fromImage);
         notificationMap.put("timeStamp", FieldValue.serverTimestamp());
 
-        notificationMap.put("requestedTime","");
+        notificationMap.put("requestedTime",requestedTime);
         notificationMap.put("recipeName", recipeName);
-        notificationMap.put("note", "");
+        notificationMap.put("note", note);
 
-        mFirestore.collection("Users/" + fromId+"/Notification").add(notificationMap).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+        mFirestore.collection("users/" + fromId+"/Notification").add(notificationMap).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
             public void onSuccess(DocumentReference documentReference) {
                 Toast.makeText(ShowNotifActivity.this,"Response Sent", Toast.LENGTH_LONG).show();

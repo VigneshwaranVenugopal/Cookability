@@ -13,7 +13,7 @@
         android:layout_alignLeft="@+id/show_notif_fromName"
         android:layout_alignParentEnd="false"
         android:layout_below="@+id/show_notif_time"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         android:fontFamily="@font/nunito_semibold"
         android:text="note"
         android:textColor="@android:color/black"
@@ -53,7 +53,7 @@
         android:id="@+id/show_notif_fromName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="25dp"
+        android:layout_marginLeft="5dp"
         android:layout_marginTop="40dp"
         android:fontFamily="@font/nunito_semibold"
         android:text="From"
@@ -99,21 +99,5 @@
         android:layout_alignParentTop="true"
         android:indeterminate="true"
         android:visibility="invisible" />
-
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/bottom_nav"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_gravity="bottom"
-        app:itemBackground="@android:color/transparent"
-        app:itemIconTint="@color/ic_launcher_background"
-        app:itemTextColor="@color/ic_launcher_background"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottombar_menu" />
 
 </RelativeLayout>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="wrap_content">
 
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -12,14 +12,13 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:padding="15dp"
-        android:src="@drawable/default_image" />
+        android:src="@drawable/ic_launcher_app" />
 
     <TextView
         android:id="@+id/notif_list_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="20dp"
         android:layout_marginTop="23dp"
         android:layout_toEndOf="@+id/notif_list_image"
         android:fontFamily="@font/nunito_semibold"
@@ -30,30 +29,14 @@
     <Button
         android:id="@+id/show_notif_btn"
         android:layout_width="65dp"
-        android:layout_height="30dp"
-        android:layout_alignBottom="@+id/notif_list_message"
+        android:layout_height="25dp"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="23dp"
+        android:layout_alignTop="@+id/notif_list_message"
+        android:layout_marginEnd="20dp"
         android:background="@drawable/primary_color_btn"
         android:fontFamily="@font/nunito_semibold"
         android:text="Read"
         android:textColor="@android:color/white"
         android:textSize="12sp" />
-
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/bottom_nav"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_gravity="bottom"
-        app:itemBackground="@android:color/transparent"
-        app:itemIconTint="@color/ic_launcher_background"
-        app:itemTextColor="@color/ic_launcher_background"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottombar_menu" />
 
 </RelativeLayout>

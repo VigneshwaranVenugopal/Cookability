@@ -29,9 +29,6 @@ public class NotificationActivity extends AppCompatActivity {
     private FirebaseFirestore mFirestore;
     private FirebaseAuth mAuth;
 
-    public NotificationActivity(){
-        //Required empty public constructor
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +55,7 @@ public class NotificationActivity extends AppCompatActivity {
 
         notificationList.clear();
 
-        mFirestore.collection("Users").document(mAuth.getCurrentUser().getUid()).collection("Notification").orderBy("timeStamp", Query.Direction.DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        mFirestore.collection("users").document(mAuth.getCurrentUser().getUid()).collection("Notification").orderBy("timeStamp", Query.Direction.DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()){
@@ -82,7 +79,7 @@ public class NotificationActivity extends AppCompatActivity {
 
                         curNotif.setNote(documentSnapshot.getString("note"));
                         curNotif.setRecipeName(documentSnapshot.getString("recipeName"));
-                        curNotif.setRequestedTime("requestedTime");
+                        curNotif.setRequestedTime(documentSnapshot.getString("requestedTime"));
 
                         notificationList.add(curNotif);
                         notifRecyclerAdapter.notifyDataSetChanged();
