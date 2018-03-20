@@ -3,7 +3,9 @@
     <color name="colorPrimary">#e8620c</color>
     <color name="colorPrimaryDark">#e8620c</color>
     <color name="colorAccent">#555555</color>
-
+    <color name="sinch_purple">#ff63029d</color>
+    <color name="off_white">#fffafafa</color>
+    <color name="greyish">#fff2f1f2</color>
     <color name="textTabLight">#009BFC</color>
     <color name="textTabBright">#ffffff</color>
     <color name="notifBright">#000000</color>

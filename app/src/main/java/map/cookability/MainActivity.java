@@ -142,8 +142,6 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
                 if (documentSnapshots != null){
-                    Log.d(TAG, "onEvent: username does not exists");
-                    Toast.makeText(getBaseContext(), "Username is not available", Toast.LENGTH_SHORT).show();
                     db.collection("users").document(user.getUid())
                             .set(currentuser)
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -270,8 +268,11 @@ public class MainActivity extends AppCompatActivity
 
                         }
                     });
+            finish();
 
         } else if (id == R.id.nav_share) {
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_send) {
 
