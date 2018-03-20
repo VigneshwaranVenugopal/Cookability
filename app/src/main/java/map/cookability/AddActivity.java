@@ -65,10 +65,14 @@ public class AddActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         Button takePhoto = (Button) findViewById(R.id.takePhoto);
         Button submit = (Button) findViewById(R.id.submitButton);
-        //Button takeVideo = (Button) findViewById(R.id.takeVideo);
         mImageView = (ImageView) findViewById(R.id.mImageView);
+        final EditText name = (EditText) findViewById(R.id.EditTextName);
+        final Spinner category = (Spinner) findViewById(R.id.categorySpinner);
+        final Spinner nonveg = (Spinner) findViewById(R.id.nonvegSpinner);
+        final EditText ingridients = (EditText) findViewById(R.id.ingridientsText);
+        final EditText steps = (EditText) findViewById(R.id.stepsText);
+        final Map<String, String> recipe = new HashMap<>();
 
-        //mVideoView = (VideoView) findViewById(R.id.mVideoView);
         setSupportActionBar(toolbar);
 
 
@@ -97,16 +101,7 @@ public class AddActivity extends AppCompatActivity {
                 Log.d("YES",imagepath);
             }
         });
-        final EditText name = (EditText) findViewById(R.id.EditTextName);
 
-        final Spinner category = (Spinner) findViewById(R.id.categorySpinner);
-
-        final Spinner nonveg = (Spinner) findViewById(R.id.nonvegSpinner);
-
-        final EditText ingridients = (EditText) findViewById(R.id.ingridientsText);
-
-        final EditText steps = (EditText) findViewById(R.id.stepsText);
-        final Map<String, String> recipe = new HashMap<>();
 
 
             submit.setOnClickListener(new View.OnClickListener() {

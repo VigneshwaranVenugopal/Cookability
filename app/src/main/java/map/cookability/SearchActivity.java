@@ -143,20 +143,4 @@ public class SearchActivity extends AppCompatActivity {
 
     }
 
-        List<Query> createSimpleQueries() {
-            List<Query> querys = new ArrayList<>();
-            CollectionReference recipes = db.collection("recipes");
-
-            // [START fs_simple_queries]
-            Query countryQuery = recipes.whereEqualTo("name", "noodles");
-            Query populationQuery = recipes.whereLessThan("population", 1000000L);
-            Query cityQuery = recipes.whereGreaterThanOrEqualTo("name", "San Francisco");
-            // [END fs_simple_queries]
-
-            querys.add(countryQuery);
-            querys.add(populationQuery);
-            querys.add(cityQuery);
-            return querys;
-        }
-
 }

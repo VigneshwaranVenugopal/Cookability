@@ -9,7 +9,7 @@
         app:showAsAction="ifRoom"/>
 
     <item
-        android:id="@+id/bottombaritem_messages"
+        android:id="@+id/bottombaritem_search"
         android:icon="@drawable/ic_message_black_24dp"
         android:title="Search"
         app:showAsAction="ifRoom"/>
