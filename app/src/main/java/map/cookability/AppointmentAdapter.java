@@ -59,20 +59,27 @@ public class AppointmentAdapter extends BaseAdapter {
 
         TextView appointmentDate = rowView.findViewById(R.id.appointment_date);
         TextView recipeName = rowView.findViewById(R.id.recipe_name);
+        TextView chefNameName = rowView.findViewById(R.id.chef_name_name);
         TextView chefName = rowView.findViewById(R.id.chef_name);
         TextView studentUID = rowView.findViewById(R.id.student_uid);
 
 
+
         Map<String, Object> appointment = (Map<String, Object>) getItem(position);
         String appointmentTime = (String) appointment.get("appointment_time");
+        long l = Long.parseLong(appointmentTime);
+        String date = DateFormat.format("MM-dd-yyyy", l).toString();
         String recipeNameString = (String) appointment.get("recipe");
         String chefUIDString = (String) appointment.get("chef_uid");
         String studentUIDString = (String) appointment.get("student_uid");
+        String chefNameString = (String) appointment.get("chefName");
+        String chefNameString2 = "with " + chefNameString;
 
-        appointmentDate.setText(appointmentTime);
+        appointmentDate.setText(date);
         recipeName.setText(recipeNameString);
         chefName.setText(chefUIDString);
         studentUID.setText(studentUIDString);
+        chefNameName.setText(chefNameString2);
         return rowView;
     }
 }

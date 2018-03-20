@@ -24,6 +24,7 @@ public class Appointments extends AppCompatActivity {
     public static String UID;
     private static final String TAG = "Debug Tag";
     Button call ;
+    ArrayList<Map<String, Object>> eventList = new ArrayList<>();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
@@ -44,15 +45,9 @@ public class Appointments extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
-                            ArrayList<Map<String, Object>> eventList = new ArrayList<>();
                             for (DocumentSnapshot document : task.getResult()) {
-                                final ListView listView = (ListView) findViewById(R.id.timeline);
                                 Map<String, Object> current = document.getData();
-                                eventList.add(current);
-                                AppointmentAdapter adapter = new AppointmentAdapter(getBaseContext(), eventList);
-                                listView.setAdapter(adapter);
-                                String test = (String) current.get("status");
-                                Log.d(TAG,  test);
+                                getAppointmentInfo(current);
                             }
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
@@ -60,6 +55,36 @@ public class Appointments extends AppCompatActivity {
                     }
                 });
     }
+
+    public String getAppointmentInfo(final Map<String, Object> appointment) {
+        String chefUID = (String) appointment.get("chef_uid");
+        String chefName = "";
+        DocumentReference docRef = db.collection("users").document(chefUID);
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document != null && document.exists()) {
+                        Map<String, Object> user = document.getData();
+                        String chefName = (String) user.get("name");
+                        final ListView listView = (ListView) findViewById(R.id.timeline);
+                        AppointmentAdapter adapter = new AppointmentAdapter(getBaseContext(), eventList);
+                        Map<String, Object> appointmentWithInfo = appointment;
+                        appointmentWithInfo.put("chefName", chefName);
+                        eventList.add(appointmentWithInfo);
+                        listView.setAdapter(adapter);
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+        });
+        return chefName;
+    }
+
 
 
     public void openButton(View view){
@@ -75,6 +100,7 @@ public class Appointments extends AppCompatActivity {
 
         this.startActivity(intent);
     }
+
 
 
 
