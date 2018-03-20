@@ -36,22 +36,6 @@
         android:background="@android:color/background_light"
         app:srcCompat="@drawable/ic_search_orange" />
 
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/bottom_nav"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_gravity="bottom"
-        app:itemBackground="@android:color/transparent"
-        app:itemIconTint="@color/ic_launcher_background"
-        app:itemTextColor="@color/ic_launcher_background"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-
-        app:menu="@menu/bottombar_menu" />
-
     <ListView
         android:id="@+id/lisr"
         android:layout_width="match_parent"

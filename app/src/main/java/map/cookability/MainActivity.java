@@ -108,27 +108,6 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        bottomNavigationView.setOnNavigationItemSelectedListener(
-                new BottomNavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected( MenuItem item) {
-                        switch (item.getItemId()) {
-                            case R.id.bottombaritem_home:
-                                // TODO
-                                return true;
-                            case R.id.bottombaritem_messages:
-                                Intent intentSearch = new Intent(getBaseContext(), SearchActivity.class);
-                                startActivity(intentSearch);
-                                break;
-                            case R.id.bottombaritem_todo:
-                                Intent intent = new Intent(MainActivity.this, RequestAppointment.class);
-                                MainActivity.this.startActivity(intent);
-                        }
-                        return false;
-                    }
-                });
-
-
         getData();
     }
 
@@ -255,6 +234,10 @@ public class MainActivity extends AppCompatActivity
                     getData();
                 }
             }, 8000);
+        }
+        if(id == R.id.search){
+            Intent searchIntent = new Intent(getBaseContext(),SearchActivity.class);
+            MainActivity.this.startActivity(searchIntent);
         }
         return super.onOptionsItemSelected(item);
     }

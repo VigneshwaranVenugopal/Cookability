@@ -26,6 +26,8 @@ public class ProfileActivity extends AppCompatActivity {
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
     ImageView mImageView;
+    static final int REQUEST_TAKE_PHOTO = 1;
+    Uri photoURI;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,7 +100,6 @@ public class ProfileActivity extends AppCompatActivity {
         }
     }
 
-    static final int REQUEST_TAKE_PHOTO = 1;
-    Uri photoURI;
+
 
 }
