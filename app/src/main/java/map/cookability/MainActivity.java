@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity
     public static final String RECIPE_PAGE_TITLE_MESSAGE = "";
     public static final String RECIPE_PAGE_CHEF_MESSAGE = "";
     public static final String RECIPE_PAGE_IMG_SRC_MESSAGE = "";
+    ListView listView ;
 
     String imagepath;
 
@@ -82,10 +83,12 @@ public class MainActivity extends AppCompatActivity
 
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageRef = storage.getReference();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        listView = (ListView) findViewById(R.id.timeline);
 
         startActivityForResult(
                 AuthUI.getInstance()
@@ -178,7 +181,7 @@ public class MainActivity extends AppCompatActivity
         });
 
     }
-    ListView listView = (ListView) findViewById(R.id.timeline);
+
 
 
     public final void getData(){
