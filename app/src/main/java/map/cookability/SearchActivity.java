@@ -1,5 +1,6 @@
 package map.cookability;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -19,9 +20,11 @@ import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -29,6 +32,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 
 public class SearchActivity extends AppCompatActivity {
@@ -141,6 +145,70 @@ public class SearchActivity extends AppCompatActivity {
                     }
                 });
 
+    }
+
+    public void openRecipePage(final View view) {
+        View parent = (View) view.getParent().getParent();
+        TextView recipeIDTextView = parent.findViewById(R.id.recipe_id);
+        String recipeID = recipeIDTextView.getText().toString();
+        DocumentReference docRef = db.collection("recipes").document(recipeID);
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document != null && document.exists()) {
+                        Map<String, Object> recipe = document.getData();
+                        getChefUID(recipe);
+                    } else {
+                        Log.d("New", "No such document");
+                    }
+                } else {
+                    Log.d("New", "get failed with ", task.getException());
+                }
+            }
+        });
+    }
+
+    public void getChefUID(final Map recipe) {
+        String chefUID = (String) recipe.get("chef");
+        DocumentReference docRef = db.collection("users").document(chefUID);
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document != null && document.exists()) {
+                        String chefName = (String) document.getData().get("name");
+                        startRecipePageActivity(recipe, chefName);
+                    } else {
+                        Log.d("NEW", "No such document");
+                    }
+                } else {
+                    Log.d("NEW", "get failed with ", task.getException());
+                }
+            }
+        });
+    }
+
+    public void startRecipePageActivity(Map recipe, String chefName) {
+        Intent intent = new Intent(this, RecipePage.class);
+
+        String recipeTitle = (String) recipe.get("name");
+        String category = (String) recipe.get("category");
+        String chefUID = (String) recipe.get("chef");
+        String imageURL = (String) recipe.get("imageurl");
+
+        Bundle extras = new Bundle();
+        extras.putString("NAME",recipeTitle);
+        extras.putString("CATEGORY", category);
+        extras.putString("IMAGE_URL", imageURL);
+        extras.putString("CHEF", chefName);
+        extras.putString("CHEF_UID", chefUID);
+        extras.putString("STUDENT_UID", FirebaseAuth.getInstance().getCurrentUser().getUid());
+        intent.putExtras(extras);
+
+        this.startActivity(intent);
     }
 
 }
