@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -53,6 +54,10 @@ public class Appointments extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+    public void openVideoCall(View view) {
+        TextView chefUID = findViewById(R.id.chef_name);
     }
 
 }

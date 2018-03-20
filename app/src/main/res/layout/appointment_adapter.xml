@@ -9,6 +9,7 @@
             android:id="@+id/appointment_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="openVideoCall"
             android:text="appointment"
             android:textAlignment="center"
             android:textColor="#040404"
