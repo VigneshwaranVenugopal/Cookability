@@ -41,6 +41,7 @@ public class PlaceCallActivity extends BaseActivity {
         TextView userName = findViewById(R.id.loggedInName);
         userName.setText(getSinchServiceInterface().getUserName());
         mCallButton.setEnabled(true);
+        callButtonClicked();
     }
 
     private void stopButtonClicked() {
@@ -51,7 +52,8 @@ public class PlaceCallActivity extends BaseActivity {
     }
 
     private void callButtonClicked() {
-        String userName = mCallName.getText().toString();
+        //String userName = mCallName.getText().toString();
+        String userName = ChefUID;
         if (userName.isEmpty()) {
             Toast.makeText(this, "Please enter a user to call", Toast.LENGTH_LONG).show();
             return;
