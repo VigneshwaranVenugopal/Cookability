@@ -122,6 +122,12 @@ public class ShowNotifActivity extends AppCompatActivity implements View.OnClick
     private void sendNotification(boolean flag) {
 
 
+//        mFirestore.collection("users").document(fromId).collection("Appointment")get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+//            @Override
+//            public void onSuccess(DocumentSnapshot documentSnapshot) {
+//                studentName = documentSnapshot.getString("name");
+//            }
+//        });
         String abstr;
         if (flag){
             sendMessage = "Yes: "+ currentName + "accepts your request!";
@@ -143,9 +149,9 @@ public class ShowNotifActivity extends AppCompatActivity implements View.OnClick
 //        notificationMap.put("currentImage",fromImage);
         notificationMap.put("timeStamp", FieldValue.serverTimestamp());
 
-        notificationMap.put("requireTime",requestedTime);
-        notificationMap.put("recipeTitle", recipeName);
-        notificationMap.put("note", note);
+        notificationMap.put("requestedTime","");
+        notificationMap.put("recipeName", recipeName);
+        notificationMap.put("note", "");
 
         mFirestore.collection("Users/" + fromId+"/Notification").add(notificationMap).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
