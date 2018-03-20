@@ -35,7 +35,8 @@
         android:layout_marginStart="13dp"
         android:layout_toEndOf="@+id/search_field"
         android:background="@color/fui_transparent"
-        app:srcCompat="@mipmap/ic_searchButton" />
+        android:backgroundTint="@color/fui_transparent"
+        app:srcCompat="@drawable/ic_search_orange" />
 
     <ListView
         android:id="@+id/lisr"
