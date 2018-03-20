@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -48,13 +49,16 @@ public class NotifRecyclerAdapter extends RecyclerView.Adapter<NotifRecyclerAdap
         final String fromId = notificationList.get(position).getFromId();
         final String message = notificationList.get(position).getMessage();
         final String fromName = notificationList.get(position).getFromName();
-        final String fromImage = notificationList.get(position).getFromImage();
+//        final String fromImage = notificationList.get(position).getFromImage();
         final String read = notificationList.get(position).getRead();
         final String notificationId = notificationList.get(position).getNotificationId();
         final String currentId = notificationList.get(position).getCurrentId();
         final String currentName = notificationList.get(position).getCurrentName();
-        final String currentImage = notificationList.get(position).getCurrentImage();
+//        final String currentImage = notificationList.get(position).getCurrentImage();
         final String abstr = notificationList.get(position).getAbstr();
+        final String requestedTime = notificationList.get(position).getRequestedTime();
+        final String note = notificationList.get(position).getNote();
+        final String recipeName = notificationList.get(position).getRecipeName();
 
 
         final FirebaseFirestore mFirestore = FirebaseFirestore.getInstance();
@@ -87,8 +91,8 @@ public class NotifRecyclerAdapter extends RecyclerView.Adapter<NotifRecyclerAdap
             holder.notif_message_view.setTextColor(context.getResources().getColor(R.color.notifBright));
         }
 
-        CircleImageView notif_image_view = holder.notif_image_view;
-        Glide.with(context).load(notificationList.get(position).getFromImage()).into(notif_image_view);
+//        CircleImageView notif_image_view = holder.notif_image_view;
+//        Glide.with(context).load(notificationList.get(position).getFromImage()).into(notif_image_view);
 
         holder.notif_response.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,7 +110,11 @@ public class NotifRecyclerAdapter extends RecyclerView.Adapter<NotifRecyclerAdap
                 intent.putExtra("message", message);
                 intent.putExtra("currentId",currentId);
                 intent.putExtra("currentName",currentName);
-                intent.putExtra("currentImage", currentImage);
+
+                intent.putExtra("recipeName",recipeName);
+                intent.putExtra("requestedTime",requestedTime);
+                intent.putExtra("note",note);
+//                intent.putExtra("currentImage", currentImage);
 
                 context.startActivity(intent);
             }

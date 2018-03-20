@@ -7,14 +7,17 @@ package map.cookability.NotificationFile;
 public class Notifications {
     private String abstr;
     private String message;
-    private String fromImage;
+//    private String fromImage;
     private String fromName;
     private String fromId;
     private String read;
     private String notificationId;
     private String currentId;
     private String currentName;
-    private String currentImage;
+    private String recipeName;
+    private String requestedTime;
+    private String note;
+//    private String currentImage;
 
     public Notifications(){
 
@@ -28,13 +31,13 @@ public class Notifications {
         this.message = message;
     }
 
-    public String getFromImage() {
-        return fromImage;
-    }
-
-    public void setFromImage(String fromImage) {
-        this.fromImage = fromImage;
-    }
+//    public String getFromImage() {
+//        return fromImage;
+//    }
+//
+//    public void setFromImage(String fromImage) {
+//        this.fromImage = fromImage;
+//    }
 
     public String getFromName() {
         return fromName;
@@ -91,12 +94,37 @@ public class Notifications {
     public void setCurrentName(String currentName) {
         this.currentName = currentName;
     }
+//
+//    public String getCurrentImage() {
+//        return currentImage;
+//    }
+//
+//    public void setCurrentImage(String currentImage) {
+//        this.currentImage = currentImage;
+//    }
 
-    public String getCurrentImage() {
-        return currentImage;
+
+    public String getRecipeName() {
+        return recipeName;
     }
 
-    public void setCurrentImage(String currentImage) {
-        this.currentImage = currentImage;
+    public void setRecipeName(String recipeName) {
+        this.recipeName = recipeName;
+    }
+
+    public String getRequestedTime() {
+        return requestedTime;
+    }
+
+    public void setRequestedTime(String requestedTime) {
+        this.requestedTime = requestedTime;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 }
