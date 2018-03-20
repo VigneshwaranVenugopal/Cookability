@@ -89,6 +89,7 @@ public class RequestAppointment extends AppCompatActivity {
         addAppointmentBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                addAppointment();
                 final String[] mCurrentName = new String[1];
                 mMessageProgressBar.setVisibility(View.VISIBLE);
 
@@ -249,7 +250,7 @@ public class RequestAppointment extends AppCompatActivity {
     };
 
 
-    public void addAppointment(View view) {
+    public void addAppointment() {
         final Map<String, String> appointment = new HashMap<>();
         long currentTime = System.currentTimeMillis()/1000;
 
