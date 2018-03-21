@@ -68,7 +68,7 @@ public class AppointmentAdapter extends BaseAdapter {
         Map<String, Object> appointment = (Map<String, Object>) getItem(position);
         String appointmentTime = (String) appointment.get("appointment_time");
         long l = Long.parseLong(appointmentTime);
-        String date = DateFormat.format("MM-dd-yyyy", l).toString();
+        String date = DateFormat.format("MM-dd-yyyy HH:mm:ss", l).toString();
         String recipeNameString = (String) appointment.get("recipe");
         String chefUIDString = (String) appointment.get("chef_uid");
         String studentUIDString = (String) appointment.get("student_uid");
